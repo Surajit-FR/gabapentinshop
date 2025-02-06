@@ -2,13 +2,18 @@ import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useState, useEffect, } from "react"
 
-import { NavLink } from "react-router-dom"
+import { NavLink,useNavigate } from "react-router-dom"
 import harderlogo from '../src/img/logo/logo.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCategoryList } from './store/thunks/categoryThunk'
 
 
 
 
 const Haeder_navbar_menu = () => {
+  const {categories} = useSelector(state=> state.categories)
+  const navigate= useNavigate()
+  const dispatch= useDispatch()
   const navRef= useRef(null)
   const [isOpen,setIsOpen]= useState(false)
   // const [submenuOpen, setSubmenuOpen] = useState({});
@@ -16,12 +21,10 @@ const Haeder_navbar_menu = () => {
   //   setSubmenuOpen((prev) => ({ ...prev, [key]: !prev[key] }));
   // };
   const handleClickOutside = (event) => {
-    console.log({event})
     if (navRef.current && !navRef.current.contains(event.target)) {
       setIsOpen(false);
     }
 };
-  console.log({navRef})
   const [isSticky, setIsSticky] = useState(false);
   // Function to handle scroll event and check if the header should be sticky
     const handleScroll = () => {
@@ -31,7 +34,20 @@ const Haeder_navbar_menu = () => {
         setIsSticky(false);
       }
     };
+const oncategoryClick = (id)=>{
+  navigate(`/shop-now/${id}`)
+}
 
+
+const onClickProd = () =>{
+  setIsOpen(!isOpen)
+}
+//-----//
+
+
+useEffect(()=>{
+  dispatch(getCategoryList())
+},[dispatch])
   // UseEffect to add and remove the scroll event listener
   useEffect(() => {
     // Attach the scroll event handler
@@ -43,14 +59,6 @@ const Haeder_navbar_menu = () => {
       document.removeEventListener('click', handleClickOutside, true);
     };
   }, []);
-
-
-const onClickProd = () =>{
-  setIsOpen(!isOpen)
-}
-//-----//
-
-
   return  (
    
 
@@ -123,6 +131,7 @@ const onClickProd = () =>{
                   <li className="nav-item dropdown" ref={navRef} 
                       onMouseLeave={()=>setIsOpen(false)}
                   >
+
                     <button
                       className="nav-link dropdown-toggle btn btn-link" onClick={() => onClickProd()
                       // toggleSubmenu("about")
@@ -130,57 +139,19 @@ const onClickProd = () =>{
                       >
                       Products 
                     </button>
+                
                     <ul className={`dropdown-menu ${isOpen? "show": ''}`}>
-                      <li>
-                        <NavLink className="dropdown-item" to="/baclofen">
-                          Baclofen
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink className="dropdown-item" to="/">
-                          Gabapentin
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink className="dropdown-item" to="/">
-                          Generic Fioricet
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink className="dropdown-item" to="/">
-                          Methocarbamol
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink className="dropdown-item" to="/">
-                          Zanaflex
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink className="dropdown-item" to="/">
-                          Viagra
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink className="dropdown-item" to="/">
-                          Estradiol
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink className="dropdown-item" to="/">
-                          Melatonin
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink className="dropdown-item" to="/">
-                          Trazadone
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink className="dropdown-item" to="/">
-                          Benzonatate
-                        </NavLink>
-                      </li>
+                    {categories && categories.length > 0 && 
+                    categories.map(cat=>(
+                      <li key={cat.term_id} onClick={()=>oncategoryClick(cat.term_id)}>
+                        
+                      <NavLink className="dropdown-item" to="#">
+                        {cat.name}
+                        
+                      </NavLink>
+                    </li>
+                    ))}
+
                     </ul>
                   </li>
                 
@@ -204,7 +175,7 @@ const onClickProd = () =>{
                 <div className="d-flex right1">
                   <ul className='menu_shop'>
                     <li>
-                      <Link className='sh_1' to='/shop-now'>
+                      <Link className='sh_1' to='/shop-all'>
                         Shop Now
                       </Link>
                     </li>

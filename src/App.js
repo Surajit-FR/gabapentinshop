@@ -6,7 +6,7 @@ import Aboutinner from './components/Aboutpages/Aboutinner';
 import Baclofeninner from './components/Productpages/Baclofeninner';
 
 import Shopinner from './components/Shoppages/Shopinner';
-import Product_details from './components/Product-details/Product-details';
+import Product_details from './components/Product-details/ProductDetails';
 
 import Bloginner from './components/blogpages/Bloginner';
 import Blogsingle from './components/Blogsinglepages/Blogsingle';
@@ -24,14 +24,15 @@ import ReturnsPolicy from './components/Returns/ReturnsPolicy';
 
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
+import { Provider } from 'react-redux';
 import Preloader from './components/Preloader/Preloader';
+import { store } from './store/store';
 
 function App() {
   return (
     <>
+    <Provider store={store}>
     <Router 
-    //  basename='demo/gabapentinshop-demo' 
      >
         <Preloader/>
         <Navbar />
@@ -40,8 +41,9 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about-us" element={<Aboutinner/>} />
               <Route path="/baclofen" element={< Baclofeninner/>} />
-              <Route path="/shop-now" element={< Shopinner/>} />
-              <Route path="/product-details" element={< Product_details/>} />
+              <Route path="/shop-now/:id" element={< Shopinner/>} />
+              <Route path="/shop-all" element={< Shopinner/>} />
+              <Route path="/product-details/:product_id" element={< Product_details/>} />
               <Route path="/blog" element={< Bloginner/>} />
               <Route path="/blog-single" element={<Blogsingle />} />
               <Route path="/faq" element={< Faqinner/>} />
@@ -57,7 +59,7 @@ function App() {
     </Router>
 
       <Backtotop/>
-      
+      </Provider>
     </>
   );
 }

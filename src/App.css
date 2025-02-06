@@ -1673,6 +1673,7 @@ a{
   display: block;
   border: 1px solid #ddd;
   padding: 0px;
+  cursor: no-drop;
 }
 .payment_top li a img {
   max-width: 100%;
@@ -2103,65 +2104,6 @@ a{
   padding: 0;
   margin: 0;
 }
-
-@media screen and (max-width:1199px) {
-  .harder_top_1 .right1 {  position: relative; }
-  .harder_menu .nav-item:last-child { padding-right:25px; }
-  .harder_menu .nav-item { padding-right:25px; }
-  .menu_shop li .sh_1 { min-width: 130px;}
-  .header-content h2 { font-size: 45px; line-height: 60px; }
-  .about-Text h2 { font-size: 32px;}
-  .tile-gallery .image-one { right: 0; }
-  .tile-gallery .image-three { right: 0px;}
-  .heading-layout2 h3 { font-size: 32px;}
-  .cta-title {  font-size: 20px;}
-  .cta-desc { width: 100%;}
-  .t_text { padding: 0 30px 0 70px; }
-  .people_text .slick-next { right: 22%;}
-  .t_text p { font-size: 18px;}
-  .cta_text h3 {  font-size: 30px;}
-  .find h4 {  margin-bottom: 0px;  }
-  .post-item .post-body { padding: 30px;}
-  .widget { padding: 30px;}
-  .about_pages h1 { font-size: 55px; }
-
-
-
-}
-@media screen and (max-width: 992px) {
-  .navbar-expand-lg .navbar-toggler { position: absolute; right:0; z-index:9; background:#003a54; display: block; }
-  .footer_logo { padding: 0 0 30px 0;}
-  .footer-copyright-links li { padding: 0 25px 5px 0; }
-  .harder_menu .nav-item .nav-link { line-height: 40px;}
-  .navbar-expand-lg .navbar-toggler-icon { width: 35px; height: 35px;}
-  .harder_top_1 .right1 { position: relative; }
-  .harder_top_1 .container{ position: relative;}
-  .harder_top_1 .navbar-collapse { display: none !important; }  
-  .harder_top_1 .navbar-collapse.show{ display: block !important; }
-  .navbar-expand-lg .navbar-nav { flex-direction: column; }
-  .harder_top_1 .navbar-collapse {
-    position: absolute;
-    top: 82px;
-    left: 0;
-    background: #fff;
-    z-index: 9;
-    width: 100%;
-    border-top: 1px solid #ddd;
-  }
-  .harder_menu .nav-item { padding: 0px 30px; border-bottom: 1px solid #ddd; }
-  .menu_shop { padding: 15px 30px;}
-
-
-
-}
-@media screen and (max-width: 767px) {
-  .footer_copy_right p { text-align: center; }
-  .payment_top { text-align: center; padding: 10px 0 0 0;}
-
-}
-
-
-
 .preloader {
   position: fixed;
   width: 100%;
@@ -2187,6 +2129,95 @@ a{
   100% {
     transform: rotate(360deg);
   }
+}
+
+
+
+@media screen and (max-width:1199px) {
+  .harder_top_1 .right1 {  position: relative; }
+  .harder_menu .nav-item:last-child { padding-right:25px; }
+  .harder_menu .nav-item { padding-right:25px; }
+  .menu_shop li .sh_1 { min-width: 130px;}
+  .header-content h2 { font-size: 45px; line-height: 60px; }
+  .about-Text h2 { font-size: 32px;}
+  .tile-gallery .image-one { right: 0; }
+  .tile-gallery .image-three { right: 0px;}
+  .heading-layout2 h3 { font-size: 32px;}
+  .cta-title {  font-size: 20px;}
+  .cta-desc { width: 100%;}
+  .t_text { padding: 0 30px 0 70px; }
+  .people_text .slick-next { right: 22%;}
+  .t_text p { font-size: 18px;}
+  .cta_text h3 {  font-size: 30px;}
+  .find h4 {  margin-bottom: 0px;  }
+  .post-item .post-body { padding: 30px;}
+  .widget { padding: 30px;}
+  .about_pages h1 { font-size: 55px; }
+}
+@media screen and (max-width: 992px) {
+  .navbar-expand-lg .navbar-toggler { position: absolute; right:0; z-index:9; background:#003a54; display: block; }
+  .footer_logo { padding: 0 0 30px 0;}
+  .footer-copyright-links li { padding: 0 25px 5px 0; }
+  .harder_menu .nav-item .nav-link { line-height: 40px;}
+  .navbar-expand-lg .navbar-toggler-icon { width: 35px; height: 35px;}
+  .harder_top_1 .right1 { position: relative; }
+  .harder_top_1 .container{ position: relative;}
+  .harder_top_1 .navbar-collapse { display: none !important; }  
+  .harder_top_1 .navbar-collapse.show{ display: block !important; }
+  .navbar-expand-lg .navbar-nav { flex-direction: column; }
+  .harder_top_1 .navbar-collapse {  position: absolute; top: 82px; left: 0; background: #fff; z-index: 9; width: 100%; border-top: 1px solid #ddd; }
+  .harder_menu .nav-item { padding: 0px 30px; border-bottom: 1px solid #ddd; }
+  .menu_shop { padding: 15px 30px;}
+}
+@media screen and (max-width:991px) {
+  .about-Text{ padding-top:35px; }
+  .post-slide { margin: 5px; }
+  .t_text {  padding: 0 10px 0 70px; }
+  .t_text p { font-size: 16px; }
+  .people_text { padding: 46px 0 0px 46px;}
+  .footer-copyright-links {  margin: 0;}
+  .footer_copy_right p {  font-size: 16px;}
+  .payment_top li { padding: 0 6px 0 0;}
+  .contact-panel-form{margin-top:30px;}
+  .singel_text { padding: 30px 0 0 0; }
+
+}
+@media screen and (max-width: 767px) {
+  .footer_copy_right p { text-align: center; }
+  .payment_top { text-align: center; padding: 10px 0 0 0;}
+  .header-content h2 { font-size: 30px; line-height: 44px; }
+  .header-content .btn-white{ min-width: 164px; padding: 16px 20px; }
+  .home_banner .item { height: 70vh; }
+  .heading-layout2 h3 span {  display: inline-block; }
+  .navbar-expand-lg .navbar-toggler { right: 13px;}
+  .our_text h4 { font-size: 25px;}
+  .table-striped .btnorder { padding: 6px 4px; line-height: 20px;}
+  .singel_text h4 { font-size: 30px;}
+
+}
+@media screen and (max-width: 499px) {
+  .det_hit{  display: block !important; }
+  .ri_right { float: right;  width: 100%; }
+  .header-topbar-search { max-width: 100%; display: none;;}
+  .header-topbar-search .form-control {   width: 92%; }
+  .socal_media {  text-align: center; }
+  .footer_logo .socal_media {  text-align: left; }
+  .h_top{ text-align: center; }
+  .tile-gallery .image-one {position: relative;}
+  .tile-gallery .image-two {position: relative;}
+  .tile-gallery .image-three {  position: relative;}      
+  .tile-gallery img{ width:100%; margin:0 0 10px 0;}
+  .about-Text h2 { font-size: 30px;}
+  .heading-layout2 h3 {  font-size: 30px; line-height: 36px;}
+  .cta-layout1 { padding: 50px 0 120px 0;}
+  .people_text h2 {  font-size: 30px;}
+  .people_text { padding: 30px; }   
+  .t_text {  padding: 0 0px 0 50px; }
+  .people_text .slick-next {  right: 0%; }
+  .people_text .slick-prev { right: 13.5%;}
+  .cta_text ul li { padding: 0 5px 0 0;}
+  .post-item .post-title { font-size: 18px;}
+  .post-item .post-body { padding: 20px; } 
 }
 
 

@@ -23,7 +23,7 @@ const Single_product = () => {
         <div className='container'>
             <div className='row no-gutters'>
 
-                <div className='col-md-6 col-lg-5'>
+                <div className='col-md-12 col-lg-5'>
                     <div className='swiper_boxc'>
                         <Swiper
                             style={{
@@ -78,7 +78,7 @@ const Single_product = () => {
                     </div>
                 </div>
 
-                <div className='col-md-6 col-lg-7'>
+                <div className='col-md-12 col-lg-7'>
                     <div className='singel_text'>
                         <h4>Gabapentin 800mg- 120 Tabs</h4>
                         <h5 className='prices'>$82.00</h5>

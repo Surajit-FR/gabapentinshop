@@ -65,7 +65,7 @@ const onClickProd = () =>{
               </div>
               <div className='col-md-6'>
                 <div className='h_top ri_right'>
-                  <div className='d-flex'>
+                  <div className='d-flex det_hit'>
                     <form className="header-topbar-search">
                       <input type="text" className="form-control" placeholder="Type Search Words"/>
                       <button className="header-topbar-search-btn"><i className="fa fa-search"></i></button>
@@ -208,12 +208,12 @@ const onClickProd = () =>{
                         Shop Now
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link className='action-btn-cart' to='/'>
                         <i className="fa-solid fa-cart-shopping"></i>
                         <span className="cart-counter">3</span>
                       </Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>

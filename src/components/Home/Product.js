@@ -20,7 +20,7 @@ const Product = () => {
           {
             breakpoint: 768, 
             settings: {
-              slidesToShow: 3, 
+              slidesToShow: 2, 
             },
           },
           {
@@ -29,6 +29,13 @@ const Product = () => {
               slidesToShow: 3, 
             },
           },
+          {
+            breakpoint: 499, 
+            settings: {
+              slidesToShow: 1, 
+            },
+          },
+
           {
             breakpoint: 1199, 
             settings: {

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -15,8 +15,8 @@ import { Link } from 'react-router-dom';
 
 
 const SingleProduct = ({ data }) => {
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
+    // const [thumbsSwiper, setThumbsSwiper] = useState(null);
+// console.log(data)
     return (
         <div>
 
@@ -34,7 +34,7 @@ const SingleProduct = ({ data }) => {
                                     loop={true}
                                     spaceBetween={10}
                                     navigation={true}
-                                    thumbs={{ swiper: thumbsSwiper }}
+                                    // thumbs={{ swiper: thumbsSwiper }}
                                     modules={[FreeMode, Navigation, Thumbs]}
                                     className="mySwiper2"
                                 >
@@ -87,7 +87,7 @@ const SingleProduct = ({ data }) => {
                                     to='/order'
                                 >Buy Now
                                 </Link>
-                                {/* <p><b>Category:</b> <a href='/'> Men's Perfume</a></p> */}
+                                <p><b>Category:</b> <a href='/'>{data.categories}</a></p>
                             </div>
                         </div>
 

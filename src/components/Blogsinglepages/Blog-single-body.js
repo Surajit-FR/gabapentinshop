@@ -1,7 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+
 const Blog_single_body = () => {
+    const {categories} = useSelector(state=> state.categories)
+     const navigate= useNavigate()
+
+    const oncategoryClick = (id)=>{
+        navigate(`/shop-now/${id}`)
+      }
   return (
+
     <div>
         <div className="blog_single">
             <div className="container">
@@ -102,43 +111,16 @@ const Blog_single_body = () => {
                             <div className="widget widget-categories">
                                 <h5 className="widget-title">Categories</h5>
                                 <div className="widget-content">
+
                                     <ul className="list-unstyled mb-0">
-                                        <li>
-                                            <Link to="/">
-                                                <span className="cat-title">Baclofen</span>
-                                                <span className="cat-count">2</span>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/">
-                                                <span className="cat-title">Gabapentin</span>
-                                                <span className="cat-count">4</span>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/">
-                                                <span className="cat-title">Generic Fioricet</span>
-                                                <span className="cat-count">3</span>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/">
-                                                <span className="cat-title">Methocarbamol</span>
-                                                <span className="cat-count">12</span>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/">
-                                                <span className="cat-title">Zanaflex</span>
-                                                <span className="cat-count">7</span>
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/">
-                                                <span className="cat-title">Viagra</span>
-                                                <span className="cat-count">5</span>
-                                            </Link>
-                                        </li>
+                                        {categories && categories.length> 0 && categories.map((cat)=>(
+                                                 <li key={cat.term_id} onClick={()=>oncategoryClick(cat.term_id)}>
+                                                 <Link to="#">
+                                                     <span className="cat-title">{cat.name}</span>
+                                                     <span className="cat-count">{cat.term_id}</span>
+                                                 </Link>
+                                             </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>

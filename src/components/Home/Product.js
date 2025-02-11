@@ -1,49 +1,56 @@
-import React from 'react'
-import $ from "jquery"
+import React, { useEffect } from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from 'react-router-dom';
+import { getAllProducts } from '../../store/thunks/productThunk';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Product = () => {
+    const { productsPercategory } = useSelector(state => state.products)
+    const dispatch = useDispatch()
+    
+    useEffect(() => {
+        dispatch(getAllProducts())
+    }, [dispatch])
 
     const productslider = {
-        dots: true,           
-        infinite: true,      
-        speed: 500,           
-        slidesToShow:4,     
-        slidesToScroll: 1,    
-        autoplay: false,       
-        autoplaySpeed: 3000,  
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 3000,
         responsive: [
-          {
-            breakpoint: 768, 
-            settings: {
-              slidesToShow: 2, 
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                },
             },
-          },
-          {
-            breakpoint: 1024, 
-            settings: {
-              slidesToShow: 3, 
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                },
             },
-          },
-          {
-            breakpoint: 499, 
-            settings: {
-              slidesToShow: 1, 
+            {
+                breakpoint: 499,
+                settings: {
+                    slidesToShow: 1,
+                },
             },
-          },
 
-          {
-            breakpoint: 1199, 
-            settings: {
-              slidesToShow: 3, 
+            {
+                breakpoint: 1199,
+                settings: {
+                    slidesToShow: 3,
+                },
             },
-          },
         ],
-      }
+    }
 
     return (
         <div>
@@ -62,116 +69,32 @@ const Product = () => {
                     </div>
 
                     <Slider {...productslider}>
-                        <div>
-                            <div className="post-slide">
-                                <div className="post-img">
-                                    <div className="min_box">
-                                        <div className="box7">
-                                            <img className="pic-1" src={require("../../assets/product/1.png")} alt='pic'/>
-                                            <div className="box-content">
-                                                <div className="icon">
-                                                    <Link to="/">Add To Cart</Link>
+                        {
+                            productsPercategory && productsPercategory.length>0 && productsPercategory.map(product=>(
+                                <div key={product.id}>
+                                <div className="post-slide">
+                                    <div className="post-img">
+                                        <div className="min_box">
+                                            <div className="box7">
+                                                <img className="pic-1" src={product.image} alt='pic'/>
+                                                <div className="box-content">
+                                                    <div className="icon">
+                                                        <Link to="/">Add To Cart</Link>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="text_v">
-                                            <h3>Gabapentin 800mg- 120 Tabs</h3>
-                                            <Link to="/" className="cl_iert">Buy Now</Link>
-                                            <span className="n_per">$170.00</span>
-                                            <div className="clearfix"></div>
+                                            <div className="text_v">
+                                                <h3>{product.title}</h3>
+                                                <Link to={`/product-details/${product.id}`} className="cl_iert">Buy Now</Link>
+                                                <span className="n_per">${product.regular_price}</span>
+                                                <div className="clearfix"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <div className="post-slide">
-                                <div className="post-img">
-                                    <div className="min_box">
-                                        <div className="box7">
-                                            <img className="pic-1" src={require("../../assets/product/1.png")} alt='pic'/>
-                                            <div className="box-content">
-                                                <div className="icon">
-                                                    <Link to="/">Add To Cart</Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="text_v">
-                                            <h3>Gabapentin 800mg- 120 Tabs</h3>
-                                            <Link to="/" className="cl_iert">Buy Now</Link>
-                                            <span className="n_per">$170.00</span>
-                                            <div className="clearfix"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="post-slide">
-                                <div className="post-img">
-                                    <div className="min_box">
-                                        <div className="box7">
-                                            <img className="pic-1" src={require("../../assets/product/1.png")} alt='pic'/>
-                                            <div className="box-content">
-                                                <div className="icon">
-                                                    <Link to="/">Add To Cart</Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="text_v">
-                                            <h3>Gabapentin 800mg- 120 Tabs</h3>
-                                            <Link to="/" className="cl_iert">Buy Now</Link>
-                                            <span className="n_per">$170.00</span>
-                                            <div className="clearfix"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="post-slide">
-                                <div className="post-img">
-                                    <div className="min_box">
-                                        <div className="box7">
-                                            <img className="pic-1" src={require("../../assets/product/1.png")} alt='pic'/>
-                                            <div className="box-content">
-                                                <div className="icon">
-                                                    <Link to="/">Add To Cart</Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="text_v">
-                                            <h3>Gabapentin 800mg- 120 Tabs</h3>
-                                            <Link to="/" className="cl_iert">Buy Now</Link>
-                                            <span className="n_per">$170.00</span>
-                                            <div className="clearfix"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="post-slide">
-                                <div className="post-img">
-                                    <div className="min_box">
-                                        <div className="box7">
-                                            <img className="pic-1" src={require("../../assets/product/1.png")} alt='pic'/>
-                                            <div className="box-content">
-                                                <div className="icon">
-                                                    <Link to="/">Add To Cart</Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="text_v">
-                                            <h3>Gabapentin 800mg- 120 Tabs</h3>
-                                            <Link to="/" className="cl_iert">Buy Now</Link>
-                                            <span className="n_per">$170.00</span>
-                                            <div className="clearfix"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            ))
+                        }
                     </Slider>
                 </div>
             </div>

@@ -28,4 +28,27 @@ export const getAllProducts = createAsyncThunk(
       return response.data.result.products
     },
 )
+// First, create the thunk
+export const mapProductsPerCategory = createAsyncThunk(
+  'product/mapAllProductsPercategory',
+  async (category) => {
+    const response = await GETALLPRODUCTSPERCATEGORY(category.id)
+    if(response.data.result.product_list && response.data.result.product_list.length>0 ){
+      const updatedRes = {
+        categoryName:category.name,
+        categoryId: category.id,
+        products: response.data.result.product_list.map(item=>item)
+      }
+      return updatedRes
+    }
+    else {
+      return {
+        categoryName:category.name,
+        categoryId: category.id,
+        products:[]
+      }
+    }
+   
+  },
+)
   

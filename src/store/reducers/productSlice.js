@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getProductsPerCategory, getProductDetails, getAllProducts } from '../thunks/productThunk'
+import { getProductsPerCategory, getProductDetails, getAllProducts,mapProductsPerCategory } from '../thunks/productThunk'
 
 
 const initialState = {
     productsPercategory: [],
     productDetails: {},
     loading: 'idle',
+    mapProductsData:[]
 }
 
 
@@ -15,6 +16,9 @@ const productReducer = createSlice({
     initialState,
     reducers: {
         // standard reducer logic, with auto-generated action types per reducer
+        cleanup: ()=>{
+            return initialState
+        }
     },
     extraReducers: (builder) => {
         // Add reducers for additional action types here, and handle loading state as needed
@@ -30,8 +34,15 @@ const productReducer = createSlice({
             // Add product to the state obj
             state.productsPercategory = action.payload
         })
+        builder.addCase(mapProductsPerCategory.fulfilled, (state, action) => {
+            // Add product to the state obj
+            state.mapProductsData.push(action.payload)
+        })
     },
 })
 
+export const {
+    cleanup,
+} = productReducer.actions
 
 export default productReducer.reducer;

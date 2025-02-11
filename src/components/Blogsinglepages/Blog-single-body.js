@@ -1,14 +1,30 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { mapProductsPerCategory } from '../../store/thunks/productThunk'
+import { cleanup } from '../../store/reducers/productSlice'
 
 const Blog_single_body = () => {
     const {categories} = useSelector(state=> state.categories)
+    const {mapProductsData} = useSelector(state=> state.products)
+    const dispatch = useDispatch()
      const navigate= useNavigate()
 
     const oncategoryClick = (id)=>{
         navigate(`/shop-now/${id}`)
       }
+    useEffect(()=>{
+        if(categories && categories.length>0){
+           categories.map(item=>(dispatch(mapProductsPerCategory({id:item.term_id, name: item.name}))))
+        }
+       
+    },[dispatch,categories])
+    
+    useEffect(()=>{
+        return()=>{
+            dispatch(cleanup())
+        }
+    },[dispatch])
   return (
 
     <div>
@@ -113,11 +129,11 @@ const Blog_single_body = () => {
                                 <div className="widget-content">
 
                                     <ul className="list-unstyled mb-0">
-                                        {categories && categories.length> 0 && categories.map((cat)=>(
-                                                 <li key={cat.term_id} onClick={()=>oncategoryClick(cat.term_id)}>
+                                        {mapProductsData && mapProductsData.length> 0 && mapProductsData.map((cat)=>(
+                                                 <li key={cat.categoryId} onClick={()=>oncategoryClick(cat.categoryId)}>
                                                  <Link to="#">
-                                                     <span className="cat-title">{cat.name}</span>
-                                                     <span className="cat-count">{cat.term_id}</span>
+                                                     <span className="cat-title">{cat.categoryName}</span>
+                                                     <span className="cat-count">{cat.products.length}</span>
                                                  </Link>
                                              </li>
                                         ))}

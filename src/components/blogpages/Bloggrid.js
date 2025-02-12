@@ -34,7 +34,7 @@ const Bloggrid = () => {
                                     <div className="post-body">
                                         <div className="post-meta d-flex align-items-center">
                                             <div className="post-meta-cat">
-                                                <Link to="/blog-single">{blog.title}</Link>
+                                                <Link to={`/blog-single/${blog.id}`}>{blog.title}</Link>
                                             </div>
                                             <Link className="post-meta-author" to={`/blog-single/${blog.id}`}>{blog.author}</Link>
                                         </div>

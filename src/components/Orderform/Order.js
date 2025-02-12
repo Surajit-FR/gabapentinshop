@@ -1,11 +1,17 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import usePageMeta from "../Seo/Seo";
 import { getAllProducts } from '../../store/thunks/productThunk';
 import { useDispatch, useSelector } from 'react-redux';
+import emailjs from '@emailjs/browser';
+
+const SERVICE_ID = "service_jffft35"
+const YOUR_TEMPLATE_ID ="template_2ynn5ap"
+const YOUR_PUBLIC_KEY = "mon7ZTBXHdv7oXhEK"
 
 const Order = () => {
     const { productsPercategory } = useSelector(state => state.products)
+    const form = useRef();
     const dispatch = useDispatch()
     const [selectedProduct, setSelectedProduct] = useState({})
     const [formDta, setFormData] = useState({
@@ -67,11 +73,21 @@ const Order = () => {
     //   setSelectedOption(event.target.value);
     // };
     const onSubmit=(e)=>{
-        e.proventDefault()
-
-        validate()
+        e.preventDefault()
+        emailjs
+        .sendForm(SERVICE_ID, YOUR_TEMPLATE_ID, form.current, {
+          publicKey: YOUR_PUBLIC_KEY,
+        })
+        .then(
+          () => {
+            console.log('SUCCESS!');
+          },
+          (error) => {
+            console.log('FAILED...', error.text);
+          },
+        );
     }
-    console.log({ error })
+    // console.log({ error })
     usePageMeta({
         title: 'Order',
         description: 'Gabapentinshop Order',
@@ -79,10 +95,12 @@ const Order = () => {
     });
 useEffect(()=>{
 if(selectedProduct){
+    console.log(selectedProduct)
     setFormData(prevState=> ({
         ...prevState,
-        product:selectedProduct.title,
-        productId:selectedProduct.id
+        name:selectedProduct.title,
+        id:selectedProduct.id,
+        price:selectedProduct.regular_price
 
     }
     ))
@@ -95,12 +113,14 @@ if(selectedProduct){
 
             <div className='online_order'>
                 <div className='container'>
-                    <form className='order_box_123' onSubmit={onSubmit}>
+                    <form className='order_box_123'
+                    //  onSubmit={onSubmit}
+                      ref={form}>
                         <div className='row'>
                             <div className='col-md-6'>
                                 <div className='order_input'>
                                     <h4>Select Your Product <span>*</span></h4>
-                                    <select className="form-control" onChange={e => setSelectedProduct(productsPercategory.filter(item => item.id == e.target.value)[0])}>
+                                    <select className="form-control" onChange={e => setSelectedProduct(productsPercategory.filter(item => item.id == e.target.value)[0])} value={selectedProduct.title} name="product">
                                         <option value="">Select Your Product</option>
                                         {productsPercategory && productsPercategory.length > 0 && productsPercategory.map(product =>
                                         (
@@ -110,10 +130,12 @@ if(selectedProduct){
                                     </select>
                                 </div>
                             </div>
+                            <input value={selectedProduct.title} style={{display:"none"}} name="product" readOnly/> 
+                            <input value={selectedProduct.id} style={{display:"none"}} name="id" readOnly/>
                             <div className='col-md-6'>
                                 <div className='order_input'>
                                     <h4>Product Price <span>*</span></h4>
-                                    <input type="text" className="form-control" placeholder="" name="productPrice" value={`$${selectedProduct.regular_price || 0}`} readOnly />
+                                    <input type="text" className="form-control" placeholder="" name="productPrice" value={`$${selectedProduct.regular_price || 0}`} readOnly/>
                                 </div>
                             </div>
                             <div className='col-md-6'>
@@ -426,7 +448,7 @@ if(selectedProduct){
                     </div> */}
                             <div className="col-md-12">
                                 <div className="mt-5">
-                                    <input type="submit" className="button_blue" value="Place Order" />
+                                    <input  className="button_blue" value="Place Order" onClick={(e)=>onSubmit(e)}/>
                                 </div>
                             </div>
                         </div>

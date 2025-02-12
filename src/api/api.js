@@ -31,3 +31,18 @@ export const GETPRODUCTDETAILS = ( categoryId ) => {
     }
     return API.get(`/ws-productdetail.php?${queryString.toString()}`);
 };
+
+//get all blogs
+
+export const GETALLBLOGS = () => {
+    return API.get(`/ws-blog.php`);
+};
+
+export const GETBLOGDETAILS = ( blogid ) => {
+    const queryString = new URLSearchParams();
+    // Add blogid only if it exists
+    if (blogid) {
+        queryString.append('id', blogid);
+    }
+    return API.get(`/ws-blog-details.php?${queryString.toString()}`);
+};

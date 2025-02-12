@@ -44,7 +44,7 @@ const Homebanner = () => {
                     <div className='header-content'>
                       <h2>Best Quality Medicationsat <span>Low Prices</span></h2>
                       <Link
-                       to="/shop-now"
+                       to="/shop-all"
                         className="btn-white">
                           <span>Shop Now!</span>
                           <i className="icon-arrow-right"></i>
@@ -62,7 +62,7 @@ const Homebanner = () => {
                     <div className='header-content'>
                       <h2>Best Quality Medicationsat <span>Low Prices</span></h2>
                       <Link 
-                      to="/shop-now" 
+                      to="/shop-all" 
                       className="btn-white">
                           <span>Shop Now!</span>
                           <i className="icon-arrow-right"></i>

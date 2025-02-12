@@ -1,348 +1,382 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import usePageMeta from "../Seo/Seo";
-
-
+import { getAllProducts } from '../../store/thunks/productThunk';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Order = () => {
+    const { productsPercategory } = useSelector(state => state.products)
+    const dispatch = useDispatch()
+    const [selectedProduct, setSelectedProduct] = useState({})
+    const [formDta, setFormData] = useState({
+    })
+    const [error, setError]= useState('')
+    const onChangeValue = (e) => {
+        setFormData({
+            ...formDta,
+            [e.target.name]: e.target.value
+        })
+    }
 
+
+
+
+
+    useEffect(() => {
+        dispatch(getAllProducts())
+    }, [dispatch])
+    const validate =()=>{
+        if(!formDta.product){
+            setError("please select a product")
+        }
+        if(!formDta.firstName){
+            setError("please enter First Name")
+        }
+        if(!formDta.lastName){
+            setError("please enter Last Name ")
+        }
+        if(!formDta.address){
+            setError("please enter address")
+        }
+        if(!formDta.city){
+            setError("please enter city")
+        }
+        if(!formDta.country){
+            setError("please enter country")
+        }
+        if(!formDta.state){
+            setError("please enter state")
+        }
+        if(!formDta.date){
+            setError("please enter date")
+        }
+        if(!formDta.zip){
+            setError("please enter zipcode")
+        }
+        if(!formDta.height){
+            setError("please enter height")
+        }
+        if(!formDta.weight){
+            setError("please enter weight")
+        }
+        // return false
+    }
     // const [selectedOption, setSelectedOption] = useState("");
 
     // const handleOptionChange = (event) => {
     //   setSelectedOption(event.target.value);
     // };
+    const onSubmit=(e)=>{
+        e.proventDefault()
 
+        validate()
+    }
+    console.log({ error })
     usePageMeta({
-        title:'Order',
-        description:'Gabapentinshop Order',
-        keywords:'Gabapentinshop Order',
+        title: 'Order',
+        description: 'Gabapentinshop Order',
+        keywords: 'Gabapentinshop Order',
     });
+useEffect(()=>{
+if(selectedProduct){
+    setFormData(prevState=> ({
+        ...prevState,
+        product:selectedProduct.title,
+        productId:selectedProduct.id
 
-  return (
-    <div>
-
-
-
-      <div className='online_order'>
-        <div className='container'>
-            <form className='order_box_123'>
-                <div className='row'>
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>Select Your Product <span>*</span></h4>
-                            <select className="form-control">
-                                <option value="">Select Your Product</option>		
-                                <option value="47">Gabapentin 400 mg – 90 Tabs</option>		
-                                <option value="46">Gabapentin 400 mg – 120 Tabs</option>	
-                                <option value="45"> Gabapentin 600 mg – 90 Tabs</option>		
-                                <option value="44"> Gabapentin 300 mg – 90 Tabs</option>		
-                                <option value="43"> Gabapentin 300 mg – 120 Tabs</option>		
-                                <option value="42">Trazodone 50 Mg 180 Tab</option>		
-                                <option value="41">Trazodone 50 Mg 90 Tab</option>		
-                                <option value="40">Trazodone 50 Mg 60 Tab</option>		
-                                <option value="39">Trazodone 100 Mg 180 Tab</option>		
-                                <option value="38">Trazodone 100 Mg 90 Tab</option>		
-                                <option value="37">Trazodone 100 Mg 60 Tab</option>		
-                                <option value="36">Trazodone 150 Mg 60 Tab</option>		
-                                <option value="35">Trazodone 150 Mg 90 Tab</option>		
-                                <option value="34">White Butalbital/APAP/Caffeine (Generic Fioricet )- 50/325/40 mg- 90 Tabs </option>		
-                                <option value="33">White Butalbital/APAP/Caffeine (Generic Fioricet )- 50/325/40 mg- 120 Tabs </option>		
-                                <option value="32">White Butalbital/APAP/Caffeine (Generic Fioricet )- 50/325/40 mg- 180 Tabs </option>		
-                                <option value="31">Melatonin 5 mg-30 Pills</option>		
-                                <option value="30">Melatonin 5 mg - 60 Pills</option>		
-                                <option value="29">Melatonin 5 mg - 90 Pills</option>		
-                                <option value="28">Melatonin 5 mg -120Pills</option>		
-                                <option value="27">Melatonin 5 mg -180 Pills</option>		
-                                <option value="26">Benzonatate 100mg - 90 pills</option>		
-                                <option value="25">Benzonatate 100mg - 120 pills</option>		
-                                <option value="24">Benzonatate 100mg - 180 pills</option>		
-                                <option value="23">Trazodone 150 Mg 180 Tab</option>		
-                                <option value="22">Baclofen 20 Mg 180 Tab</option>		
-                                <option value="21">Methacarbomal 500 mg 180 Tablets</option>		
-                                <option value="19">Cyclobenzaprine 10mg 180 Tablets.</option>		
-                                <option value="18">Zanaflex (Tizaden) 4 mg 90 Tablets</option>		
-                                <option value="17">Zanaflex (Tizaden) 4 mg 120 Tablets</option>		
-                                <option value="16">Zanaflex (Tizaden) 4 mg  180 Tablets</option>		
-                                <option value="15">Blue Butalbital/APAP/Caffeine (Generic Fioricet )- 50/325/40 mg- 90 Tabs</option>		
-                                <option value="14">Blue Butalbital/APAP/Caffeine (Generic Fioricet )- 50/325/40 mg- 120 Tabs</option>		
-                                <option value="13">Blue Butalbital/APAP/Caffeine (Generic Fioricet )- 50/325/40 mg- 180 Tabs </option>		
-                                <option value="12">Gabapentin 800 mg – 90 Tabs</option>		
-                                <option value="11">Gabapentin 800 mg – 180 Tabs</option>		
-                                <option value="10">Gabapentin 600 mg – 180 Tabs </option>		
-                                <option value="9">Gabapentin 400 mg – 180 Tabs</option>		
-                                <option value="8"> Gabapentin 300 mg – 180 Tabs</option>		
-                                <option value="7">Gabapentin 600mg- 120 Tabs</option>		
-                                <option value="6">Gabapentin 800mg- 120 Tabs</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>Product Price <span>*</span></h4>
-                            <input type="text" className="form-control" placeholder="" name="text"/>
-                        </div>
-                    </div>
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>First Name <span>*</span></h4>
-                            <input type="text" className="form-control" placeholder="" name="text"/>
-                        </div>
-                    </div>
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>Last Name <span>*</span></h4>
-                            <input type="text" className="form-control" placeholder="" name="text"/>
-                        </div>
-                    </div>
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>Phone Number <span>*</span></h4>
-                            <input type="text" className="form-control" placeholder="" name="text"/>
-                        </div>
-                    </div>
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>Email Address <span>*</span></h4>
-                            <input type="email" className="form-control" placeholder="" name="email"/>
-                        </div>
-                    </div>
-                    <div className='col-md-12'>
-                        <div className='order_input'>
-                            <h4>Address<span>*</span></h4>
-                            <textarea className="form-control note_i" placeholder=""></textarea>
-                        </div>
-                    </div>
-
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>City <span>*</span></h4>
-                            <input type="text" className="form-control" placeholder="" name="city"/>
-                        </div>
-                    </div>
-
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>State/Province <span>*</span></h4>
-                            <input type="text" className="form-control" placeholder="" name="state"/>
-                        </div>
-                    </div>
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>Zip/Postal Code <span>*</span></h4>
-                            <input type="text" className="form-control" placeholder="" name="zip"/>
-                        </div>
-                    </div>
-
-                  
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>Country <span>*</span></h4>
-                            <select className="form-control">
-                                <option value="">-- Select a Country --</option>
-                                <option value="United States">United States</option>
-                                <option value="Canada">Canada</option>
-                                <option value="India">India</option>
-                                <option value="United Kingdom">United Kingdom</option>
-                                <option value="Australia">Australia</option>
-                                <option value="Germany">Germany</option>
-                                <option value="France">France</option>
-                                <option value="Japan">Japan</option>
-                                <option value="China">China</option>
-                                <option value="Brazil">Brazil</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>Gender <span>*</span></h4>
-                            <select className="form-control">
-                                <option value="">-- Select Gender --</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>Date Of Birth <span>*</span></h4>
-                            <input type="date" className="form-control" placeholder="" name="date"/>
-                        </div>
-                    </div>
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>Height <span>*</span></h4>
-                            <input type="text" className="form-control" placeholder="" name="Height"/>
-                        </div>
-                    </div>
-                    <div className='col-md-6'>
-                        <div className='order_input'>
-                            <h4>Weight <span>*</span></h4>
-                            <input type="text" className="form-control" placeholder="" name="Weight"/>
-                        </div>
-                    </div>
-                    <div className='col-md-12'>
-                        <div className='order_input border_top_1'>
-                            <h3>I agree not to take any over-the-counter medicines without approval from my pharmacist.
-                            </h3>
-                            <ul className='agree_list'>
-                                <li>
-                                    <input type="radio" id="agree-1" name="agree_1" value="I agree"/>
-                                    <label htmlFor="agree-1">I agree</label>
-                                </li>
-
-                                <li>
-                                    <input type="radio" id="agree-2" name="agree_1" value="I Disagree"/>
-                                    <label htmlFor="agree-2">I Disagree</label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className='col-md-12'>
-                        <div className='order_input mt-3'>
-                            <h3>If you disagree, please explain why I agree not to take medication if I am pregnant, breast-feeding,
-                                 or trying to get pregnant.
-                            </h3>
-                            <ul className='agree_list'>
-                                <li>
-                                    <input type="radio" id="agree-3" name="agree_3" value="I agree"/>
-                                    <label htmlFor="agree-3">I agree</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="agree-4" name="agree_3" value="I Disagree"/>
-                                    <label htmlFor="agree-4">I Disagree</label>
-                                </li>
-                            </ul>
-                            <h4 className='mt-3'>If you disagree, please explain why:</h4>
-                            <textarea className="form-control note_2" placeholder=""></textarea>
-
-                        </div>
-                    </div>
-                    <div className='col-md-12'>
-                        <div className='order_input mt-3'>
-                            <h3>Please list all current medical conditions. Choose "None" if none
-                            </h3>
-                            <ul className='agree_list'>
-                                <li>
-                                    <input type="radio" id="agree-5" name="agree_5" value="I agree"/>
-                                    <label htmlFor="agree-5">None</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="agree-6" name="agree_5" value="I Disagree"/>
-                                    <label htmlFor="agree-6">I will Specify</label>
-                                </li>
-                            </ul>
-                            <textarea className="form-control note_2 mt-3" placeholder=""></textarea>
-                        </div>
-                    </div>    
-                    <div className='col-md-12'>
-                        <div className='order_input mt-3'>
-                            <h3>Is there anything in your medical history that you consider to be relevant? If yes, please specify. Choose "None" if none.
-                            </h3>
-                            <ul className='agree_list'>
-                                <li>
-                                    <input type="radio" id="agree-7" name="agree_6" value="I agree"/>
-                                    <label htmlFor="agree-7">None</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="agree-8" name="agree_6" value="I Disagree"/>
-                                    <label htmlFor="agree-8">I will Specify</label>
-                                </li>
-                            </ul>
-                            <textarea className="form-control note_2 mt-3" placeholder=""></textarea>
-                        </div>
-                    </div>   
-                    <div className='col-md-12'>
-                        <div className='order_input mt-3'>
-                            <h3>Please list all over-the-counter and prescription medications that you are currently taking and 
-                                the length of time for each. Choose "None" if none.
-                            </h3>
-                            <ul className='agree_list'>
-                                <li>
-                                    <input type="radio" id="agree-9" name="agree_7" value="I agree"/>
-                                    <label htmlFor="agree-9">None</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="agree-10" name="agree_7" value="I Disagree"/>
-                                    <label htmlFor="agree-10">I will Specify</label>
-                                </li>
-                            </ul>
-                            <textarea className="form-control note_2 mt-3" placeholder=""></textarea>
-                        </div>
-                    </div>   
-
-                    <div className='col-md-12'>
-                        <div className='order_input mt-3'>
-                            <h3>Please list all past or present allergies including allergies to any medications. Choose "None" if none.
-
-                            </h3>
-                            <ul className='agree_list'>
-                                <li>
-                                    <input type="radio" id="agree-11" name="agree_8" value="I agree"/>
-                                    <label htmlFor="agree-11">None</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="agree-12" name="agree_8" value="I Disagree"/>
-                                    <label htmlFor="agree-12">I will Specify</label>
-                                </li>
-                            </ul>
-                            <textarea className="form-control note_2 mt-3" placeholder=""></textarea>
-                        </div>
-                    </div>  
-                    <div className='col-md-12'>
-                        <div className='order_input mt-3'>
-                            <h3>Please list all past surgeries and provide details including the condition that was treated with each surgery. Choose "None" if none.
+    }
+    ))
+}
+},[selectedProduct])
+    return (
+        <div>
 
 
-                            </h3>
-                            <ul className='agree_list'>
-                                <li>
-                                    <input type="radio" id="agree-13" name="agree_9" value="I agree"/>
-                                    <label htmlFor="agree-13">None</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="agree-14" name="agree_9" value="I Disagree"/>
-                                    <label htmlFor="agree-14">I will Specify</label>
-                                </li>
-                            </ul>
-                            <textarea className="form-control note_2 mt-3" placeholder=""></textarea>
-                        </div>
-                    </div>  
+
+            <div className='online_order'>
+                <div className='container'>
+                    <form className='order_box_123' onSubmit={onSubmit}>
+                        <div className='row'>
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>Select Your Product <span>*</span></h4>
+                                    <select className="form-control" onChange={e => setSelectedProduct(productsPercategory.filter(item => item.id == e.target.value)[0])}>
+                                        <option value="">Select Your Product</option>
+                                        {productsPercategory && productsPercategory.length > 0 && productsPercategory.map(product =>
+                                        (
+                                            <option key={product.id} value={product.id}>{product.title}</option>
+                                        )
+                                        )}
+                                    </select>
+                                </div>
+                            </div>
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>Product Price <span>*</span></h4>
+                                    <input type="text" className="form-control" placeholder="" name="productPrice" value={`$${selectedProduct.regular_price || 0}`} readOnly />
+                                </div>
+                            </div>
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>First Name <span>*</span></h4>
+                                    <input type="text" className="form-control" placeholder="" name="firstName" required onChange={onChangeValue} />
+                                </div>
+                            </div>
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>Last Name <span>*</span></h4>
+                                    <input type="text" className="form-control" placeholder="" name="lastName" required onChange={onChangeValue} />
+                                </div>
+                            </div>
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>Phone Number <span>*</span></h4>
+                                    <input type="text" className="form-control" placeholder="" name="phoneNumber" required onChange={onChangeValue} />
+                                </div>
+                            </div>
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>Email Address <span>*</span></h4>
+                                    <input type="email" className="form-control" placeholder="" name="email" required onChange={onChangeValue} />
+                                </div>
+                            </div>
+                            <div className='col-md-12'>
+                                <div className='order_input'>
+                                    <h4>Address<span>*</span></h4>
+                                    <textarea className="form-control note_i" placeholder="" name="address" required onChange={onChangeValue}></textarea>
+                                </div>
+                            </div>
+
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>City <span>*</span></h4>
+                                    <input type="text" className="form-control" placeholder="" name="city" required onChange={onChangeValue} />
+                                </div>
+                            </div>
+
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>State/Province <span>*</span></h4>
+                                    <input type="text" className="form-control" placeholder="" name="state" required onChange={onChangeValue} />
+                                </div>
+                            </div>
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>Zip/Postal Code <span>*</span></h4>
+                                    <input type="text" className="form-control" placeholder="" name="zip" required onChange={onChangeValue} />
+                                </div>
+                            </div>
 
 
-                    <div className='col-md-12'>
-                        <div className='order_input mt-3'>
-                            <h3>Please explain the specific medical reason for ordering this medication. The physician must know the exact nature of your medical problem in order to prescribe this medication. (This cannot be left blank. )
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>Country <span>*</span></h4>
+                                    <select className="form-control" name="country" required onChange={onChangeValue}>
+                                        <option value="">-- Select a Country --</option>
+                                        <option value="United States">United States</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="India">India</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="Germany">Germany</option>
+                                        <option value="France">France</option>
+                                        <option value="Japan">Japan</option>
+                                        <option value="China">China</option>
+                                        <option value="Brazil">Brazil</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>Gender <span>*</span></h4>
+                                    <select className="form-control" required name="gender" onChange={onChangeValue}>
+                                        <option value="">-- Select Gender --</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>Date Of Birth <span>*</span></h4>
+                                    <input type="date" className="form-control" placeholder="" name="date" required onChange={onChangeValue} />
+                                </div>
+                            </div>
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>Height <span>*</span></h4>
+                                    <input type="text" className="form-control" placeholder="" name="height" required onChange={onChangeValue} />
+                                </div>
+                            </div>
+                            <div className='col-md-6'>
+                                <div className='order_input'>
+                                    <h4>Weight <span>*</span></h4>
+                                    <input type="text" className="form-control" placeholder="" name="weight" required onChange={onChangeValue} />
+                                </div>
+                            </div>
+                            <div className='col-md-12'>
+                                <div className='order_input border_top_1'>
+                                    <h3>I agree not to take any over-the-counter medicines without approval from my pharmacist.
+                                    </h3>
+                                    <ul className='agree_list'>
+                                        <li>
+                                            <input type="radio" id="agree-1" name="isPregnant" value="I agree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-1">I agree</label>
+                                        </li>
+
+                                        <li>
+                                            <input type="radio" id="agree-2" name="isPregnant" value="I Disagree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-2">I Disagree</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className='col-md-12'>
+                                <div className='order_input mt-3'>
+                                    <h3>If you disagree, please explain why I agree not to take medication if I am pregnant, breast-feeding,
+                                        or trying to get pregnant.
+                                    </h3>
+                                    <ul className='agree_list'>
+                                        <li>
+                                            <input type="radio" id="agree-3" name="noMedication" value="I agree" />
+                                            <label htmlFor="agree-3">I agree</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="agree-4" name="noMedication" value="I Disagree" />
+                                            <label htmlFor="agree-4">I Disagree</label>
+                                        </li>
+                                    </ul>
+                                    <h4 className='mt-3'>If you disagree, please explain why:</h4>
+                                    <textarea className="form-control note_2" placeholder="" name="noMedication"></textarea>
+
+                                </div>
+                            </div>
+                            <div className='col-md-12'>
+                                <div className='order_input mt-3'>
+                                    <h3>Please list all current medical conditions. Choose "None" if none
+                                    </h3>
+                                    <ul className='agree_list'>
+                                        <li>
+                                            <input type="radio" id="agree-5" name="medicalCondition" value="I agree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-5">None</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="agree-6" name="medicalCondition" value="I Disagree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-6">I will Specify</label>
+                                        </li>
+                                    </ul>
+                                    <textarea className="form-control note_2 mt-3" placeholder="" name="medicalCondition" onChange={onChangeValue}></textarea>
+                                </div>
+                            </div>
+                            <div className='col-md-12'>
+                                <div className='order_input mt-3'>
+                                    <h3>Is there anything in your medical history that you consider to be relevant? If yes, please specify. Choose "None" if none.
+                                    </h3>
+                                    <ul className='agree_list'>
+                                        <li>
+                                            <input type="radio" id="agree-7" name="medicalHistory" value="I agree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-7">None</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="agree-8" name="medicalHistory" value="I Disagree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-8">I will Specify</label>
+                                        </li>
+                                    </ul>
+                                    <textarea className="form-control note_2 mt-3" placeholder="" name="medicalHistory" onChange={onChangeValue}></textarea>
+                                </div>
+                            </div>
+                            <div className='col-md-12'>
+                                <div className='order_input mt-3'>
+                                    <h3>Please list all over-the-counter and prescription medications that you are currently taking and
+                                        the length of time for each. Choose "None" if none.
+                                    </h3>
+                                    <ul className='agree_list'>
+                                        <li>
+                                            <input type="radio" id="agree-9" name="counterPrescription" value="I agree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-9">None</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="agree-10" name="counterPrescription" value="I Disagree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-10">I will Specify</label>
+                                        </li>
+                                    </ul>
+                                    <textarea className="form-control note_2 mt-3" placeholder="" name="counterPrescription" onChange={onChangeValue}></textarea>
+                                </div>
+                            </div>
+
+                            <div className='col-md-12'>
+                                <div className='order_input mt-3'>
+                                    <h3>Please list all past or present allergies including allergies to any medications. Choose "None" if none.
+
+                                    </h3>
+                                    <ul className='agree_list'>
+                                        <li>
+                                            <input type="radio" id="agree-11" name="allergies" value="I agree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-11">None</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="agree-12" name="allergies" value="I Disagree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-12">I will Specify</label>
+                                        </li>
+                                    </ul>
+                                    <textarea className="form-control note_2 mt-3" placeholder="" name="allergies" onChange={onChangeValue}></textarea>
+                                </div>
+                            </div>
+                            <div className='col-md-12'>
+                                <div className='order_input mt-3'>
+                                    <h3>Please list all past surgeries and provide details including the condition that was treated with each surgery. Choose "None" if none.
 
 
-                            </h3>
-                            <ul className='agree_list'>
-                                <li>
-                                    <input type="radio" id="agree-15" name="agree_10" value="I agree"/>
-                                    <label htmlFor="agree-15">None</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="agree-16" name="agree_10" value="I Disagree"/>
-                                    <label htmlFor="agree-16">I will Specify</label>
-                                </li>
-                            </ul>
-                            <textarea className="form-control note_2 mt-3" placeholder=""></textarea>
-                        </div>
-                    </div>  
-                    <div className='col-md-12'>
-                        <div className='order_input mt-3'>
-                            <ul className='agree_list list_dirt'>
-                                <li>
-                                    <input className="ert" type="checkbox" id="checked" name="checked" value="I agree"/>
-                                    <label htmlFor="checked"> I double checked the information and confirm all the information is correct , 
-                                        and I will pay you a money order when I pick up the drugs. I also know the order cannot be 
-                                        cancelled when I click "place order now</label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>  
-                    {/* <div className="col-md-12">
+                                    </h3>
+                                    <ul className='agree_list'>
+                                        <li>
+                                            <input type="radio" id="agree-13" name="surgeryInfo" value="I agree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-13">None</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="agree-14" name="surgeryInfo" value="I Disagree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-14">I will Specify</label>
+                                        </li>
+                                    </ul>
+                                    <textarea className="form-control note_2 mt-3" placeholder="" name="surgeryInfo" onChange={onChangeValue}></textarea>
+                                </div>
+                            </div>
+
+
+                            <div className='col-md-12'>
+                                <div className='order_input mt-3'>
+                                    <h3>Please explain the specific medical reason for ordering this medication. The physician must know the exact nature of your medical problem in order to prescribe this medication. (This cannot be left blank. )
+
+
+                                    </h3>
+                                    <ul className='agree_list'>
+                                        <li>
+                                            <input type="radio" id="agree-15" name="medicalProblem" value="I agree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-15">None</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="agree-16" name="medicalProblem" value="I Disagree" onChange={onChangeValue}/>
+                                            <label htmlFor="agree-16">I will Specify</label>
+                                        </li>
+                                    </ul>
+                                    <textarea className="form-control note_2 mt-3" placeholder="" name="medicalProblem" onChange={onChangeValue}></textarea>
+                                </div>
+                            </div>
+                            <div className='col-md-12'>
+                                <div className='order_input mt-3'>
+                                    <ul className='agree_list list_dirt'>
+                                        <li>
+                                            <input className="ert" type="checkbox" id="checked" name="confirmation" value="I agree" />
+                                            <label htmlFor="checked"> I double checked the information and confirm all the information is correct ,
+                                                and I will pay you a money order when I pick up the drugs. I also know the order cannot be
+                                                cancelled when I click "place order now</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {/* <div className="col-md-12">
                         <div className="payment_scc">
                             <h4>5. Payment Information</h4>
                             <h5>Free Shipping</h5>
@@ -390,17 +424,17 @@ const Order = () => {
                             )}
                         </div>
                     </div> */}
-                    <div className="col-md-12">
-                        <div className="mt-5">
-                            <input type="submit" className="button_blue" value="Place Order"/>
+                            <div className="col-md-12">
+                                <div className="mt-5">
+                                    <input type="submit" className="button_blue" value="Place Order" />
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default Order

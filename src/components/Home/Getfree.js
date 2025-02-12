@@ -87,7 +87,7 @@ const Getfree = () => {
                               <Link to="/order"> Get Free Quote</Link>
                             </li>
                             <li>
-                              <Link to="/shopinner"> Shop Now</Link>
+                              <Link to="/shop-all"> Shop Now</Link>
                             </li>
                         </ul>
                     </div>

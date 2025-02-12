@@ -77,11 +77,11 @@ const Product = () => {
                                         <div className="min_box">
                                             <div className="box7">
                                                 <img className="pic-1" src={product.image} alt='pic'/>
-                                                <div className="box-content">
+                                                {/* <div className="box-content">
                                                     <div className="icon">
                                                         <Link to="/">Add To Cart</Link>
                                                     </div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                             <div className="text_v">
                                                 <h3>{product.title}</h3>

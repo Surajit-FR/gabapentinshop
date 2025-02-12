@@ -85,7 +85,8 @@ const SingleProduct = ({ data }) => {
                                 <Link className='add_to_cart'
                                     //  href='#'
                                     to='/order'
-                                >Buy Now
+                                >Enquiry now
+                                    {/* Buy Now */}
                                 </Link>
                                 <p><b>Category:</b> <a href='/'>{data.categories}</a></p>
                             </div>

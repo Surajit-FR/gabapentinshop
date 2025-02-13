@@ -8,7 +8,7 @@ const Shop_body = ({ products }) => {
         <div>
             <div className='shop_body_section'>
                 <div className='container'>
-                    <div className='row'>
+                    <div className='row justify-content-center'>
                         {products && products.length > 0 && products.map(prod => (
                             <div className='col-md-6 col-lg-3' key={prod.id}>
                                 <div className="min_box s_min_box">

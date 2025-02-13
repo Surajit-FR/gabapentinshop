@@ -10,6 +10,9 @@ ul li{
   list-style:none;
   font-family: "Titillium Web", sans-serif;
 }
+ol li{  
+  font-family: "Titillium Web", sans-serif;
+}
 a{
   text-decoration: none;
   list-style:none;
@@ -201,9 +204,6 @@ a{
   font-weight: 700;
   margin-bottom: 30px;
   animation: fadeInDown 1s ease-in-out;
-}
-.error {
-  color: red;
 }
 /* Animation Keyframes */
 @keyframes fadeInDown {
@@ -489,7 +489,11 @@ a{
 }
 .box7:hover:before{opacity:1}
 .box7:hover:after{left:-170%}
-.box7 img{width:100%;height:auto}
+.box7 img{
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+}
 .box7 .box-content{width:100%;position:absolute;bottom:-100%;left:0;transition:all .5s ease 0s}
 .min_box:hover .box7 .box-content{bottom:45%}
 .box7 .title{display:block;font-size:22px;font-weight:700;color:#fff;margin:0 0 10px}
@@ -528,10 +532,38 @@ a{
 .min_box .text_v h3{
   font-size: 20px;
   color: #413232;
-  line-height: 32px;
-  padding: 0 0 20px 0;
-  margin: 0;
+  line-height:26px;
+  padding:0;
+  margin:0 0 10px 0;
+  height: 62px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  transition: all 500ms ease-in-out;
 }
+.min_box .text_v h3:hover{
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.min_box .text_v h3::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.0);
+	border-radius: 10px;
+	background-color:none;
+}
+
+.min_box .text_v h3::-webkit-scrollbar
+{
+	width:3px;
+	background-color:none;
+}
+.min_box .text_v:hover h3::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,.0);
+	background-color:#018bc8;
+}
+
+
 .min_box .text_v p{
   padding: 0;
   margin: 0;
@@ -1203,7 +1235,7 @@ a{
   font-family: "Titillium Web", sans-serif;
   font-size: 15px;
   font-weight: 700;
-  padding: 20px;
+  padding:14px 20px;
   text-transform: capitalize;
   color: #ffffff;
   background-color: #006b9b;
@@ -1431,6 +1463,7 @@ a{
   width: 100%;
   height:400px;
   object-fit: contain;
+  padding:40px 0;
 }
 .single_product .swiper {
   width: 100%;
@@ -2093,12 +2126,12 @@ a{
   margin: 0;
 }
 .policy_text h2{
-  font-size: 40px;
+  font-size: 25px;
   color: #003d58;
   text-transform: capitalize;
   font-weight: 600;
   line-height: 1.4;
-  margin-bottom:20px;
+  margin: 10px 0;
 }
 .policy_text p{
   font-size: 16px;
@@ -2134,7 +2167,39 @@ a{
   }
 }
 
-
+.not_found{
+  text-align: center;
+  font-size: 30px;
+  color: #0d0e43;
+  line-height: 40px;
+  font-weight: 700;
+  padding: 100px 0;
+  margin: 0;
+}
+.policy_text h4{
+  font-size:19px;
+  color: #003d58;
+  text-transform: capitalize;
+  font-weight:600;
+  line-height: 1.4;
+  margin: 10px 0;
+}
+ol.d {list-style-type: lower-alpha;}
+ol{ padding: 0 0 0 15px; margin: 0;}
+.e{   
+  padding: 0;
+  margin: 0; 
+}
+ol li{
+  font-size: 16px;
+  color: #003d58;
+  line-height: 30px;
+  padding: 0;
+  margin: 0;
+}
+.error{
+  color:red;
+}
 
 @media screen and (max-width:1199px) {
   .harder_top_1 .right1 {  position: relative; }

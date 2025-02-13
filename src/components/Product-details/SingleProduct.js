@@ -11,12 +11,17 @@ import 'swiper/css/thumbs';
 
 // import required modules
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const SingleProduct = ({ data }) => {
+    const navigate = useNavigate()
+    const onPressEnquiry = () => {
+        localStorage.setItem("productDate", JSON.stringify(data))
+        navigate(`/order`)
+    }
     // const [thumbsSwiper, setThumbsSwiper] = useState(null);
-// console.log(data)
+    // console.log(data)
     return (
         <div>
 
@@ -82,12 +87,16 @@ const SingleProduct = ({ data }) => {
                         to='/order'
                          >Add to cart
                          </Link> */}
-                                <Link className='add_to_cart'
+                                <div
+                                    onClick={() => onPressEnquiry()}
+                                >
+                                    <Link className='add_to_cart'
                                     //  href='#'
-                                    to='/order'
-                                >Enquiry now
-                                    {/* Buy Now */}
-                                </Link>
+                                    // to='/order'
+                                    >Enquiry now
+                                        {/* Buy Now */}
+                                    </Link>
+                                </div>
                                 <p><b>Category:</b> <a href='/'>{data.categories}</a></p>
                             </div>
                         </div>

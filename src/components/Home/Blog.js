@@ -11,7 +11,6 @@ const Blog = () => {
     useEffect(() => {
         dispatch(getAllBlogs())
     }, [dispatch])
-console.log(blogs)
     return (
         <div>
             <div className='blog-layout1'>

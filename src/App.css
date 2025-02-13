@@ -2200,6 +2200,54 @@ ol li{
 .error{
   color:red;
 }
+.thank_box{
+  display: flex;
+  flex-direction: column;
+  padding:100px 0;
+  margin: 0;
+}
+.thanky_2{
+  padding: 50px;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 4px 8px 40px 8px rgba(88, 146, 255, 0.2);
+  width: 100%;
+  border-radius:10px;
+}
+.thanky_2 h1{
+  font-family: "Kaushan Script", serif;
+  font-size: 60px;
+  letter-spacing: 3px;
+  color: #5892FF;
+  margin: 0;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+.thanky_2 p{
+  margin: 0;
+  font-size: 20px;
+  color: #aaa;
+  letter-spacing: 1px;
+}
+.thanky_2 .go-home{
+  color: #fff;
+  background: #018bc8;
+  border: none;
+  font-size: 18px;
+  padding: 12px 40px;
+  margin: 40px 0 0 0;
+  border-radius: 30px;
+  text-transform: capitalize;
+  box-shadow: 0 10px 16px 1px rgba(174, 199, 251, 1);
+  font-weight: 500;
+}
+
+
+
+
+
 
 @media screen and (max-width:1199px) {
   .harder_top_1 .right1 {  position: relative; }

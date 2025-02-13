@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import Preloader from './components/Preloader/Preloader';
 import { store } from './store/store';
 import AllRoutes from './routes/AllRoutes';
+import Thankyou from './components/Thankyou/Thankyou';
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
       <Provider store={store}>
         <Preloader />
         <Navbar />
-        <AllRoutes />
+        <Thankyou />
+        {/* <AllRoutes /> */}
         <Fotter />
-
+        
       </Provider>
     </>
   );

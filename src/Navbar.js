@@ -74,10 +74,10 @@ useEffect(()=>{
               <div className='col-md-6'>
                 <div className='h_top ri_right'>
                   <div className='d-flex det_hit'>
-                    <form className="header-topbar-search">
+                    {/* <form className="header-topbar-search">
                       <input type="text" className="form-control" placeholder="Type Search Words"/>
                       <button className="header-topbar-search-btn"><i className="fa fa-search"></i></button>
-                    </form>
+                    </form> */}
                     <ul className='socal_media harder_socal'>
                         <li>
                             <Link to='https://www.facebook.com/profile.php?id=61560727872011' target="_blank"><i className="fa-brands fa-facebook-f"></i></Link>

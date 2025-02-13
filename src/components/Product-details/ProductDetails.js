@@ -4,6 +4,7 @@ import usePageMeta from '../Seo/Seo'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetails } from '../../store/thunks/productThunk'
+import Preloader from '../Preloader/Preloader'
 
 
 const ProductDetails = () => {
@@ -22,7 +23,7 @@ const ProductDetails = () => {
   }, [product_id, dispatch])
   return (
     <div>
-
+      <Preloader />
       <Single_product data={productDetails} />
     </div>
   )

@@ -4,6 +4,7 @@ import usePageMeta from "../Seo/Seo";
 import { getAllProducts } from '../../store/thunks/productThunk';
 import { useDispatch, useSelector } from 'react-redux';
 import emailjs from '@emailjs/browser';
+import Preloader from "../Preloader/Preloader";
 
 const SERVICE_ID = "service_jffft35"
 const YOUR_TEMPLATE_ID = "template_2ynn5ap"
@@ -98,15 +99,18 @@ const Order = () => {
                     console.log('SUCCESS!');
                     setSubmitting(false)
                     setLoading(false)
+                    alert("Form Submitted Successfully")
                 },
                 (error) => {
                     console.log('FAILED...', error.text);
                     setSubmitting(false)
                     setLoading(false)
+                    alert("Something Went Wrong...Please try Again Later")
+
                 },
             );
         // setSubmitting(false)
-    }, [formDta])
+    }, [])
 
     useEffect(() => {
         if (Object.keys(errors).length === 0 && submitting) {
@@ -143,14 +147,11 @@ const Order = () => {
     }, [])
     return (
         <div>
+            
             <div className='online_order'>
                 <div className='container'>
                     {loading ? (
-                        <div>
-                            <div className="preloader">
-                                <div className="spinner"></div>
-                            </div>
-                        </div>
+                        <Preloader />
                     ) :
                         <form className='order_box_123'
                             ref={form}

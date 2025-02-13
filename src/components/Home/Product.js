@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from 'react-router-dom';
 import { getAllProducts } from '../../store/thunks/productThunk';
 import { useDispatch, useSelector } from 'react-redux';
+import Preloader from '../Preloader/Preloader';
 
 
 const Product = () => {
@@ -20,7 +21,7 @@ const Product = () => {
         infinite: true,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 1,
+        slidesToScroll: 5,
         autoplay: false,
         autoplaySpeed: 3000,
         responsive: [
@@ -56,7 +57,6 @@ const Product = () => {
         <div>
 
 
-
             <div className='services-layout4'>
                 <div className='container'>
                     <div className='row'>
@@ -75,8 +75,8 @@ const Product = () => {
                                 <div className="post-slide">
                                     <div className="post-img">
                                         <div className="min_box">
-                                            <div className="box7">
-                                                <img className="pic-1" src={product.image} alt='pic'/>
+                                            <div className="box7" >
+                                                <img className="pic-1" src={product.image} alt='pic' style={{objectFit:'contain'}}/>
                                                 {/* <div className="box-content">
                                                     <div className="icon">
                                                         <Link to="/">Add To Cart</Link>

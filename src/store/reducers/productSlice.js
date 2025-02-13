@@ -29,6 +29,7 @@ const productReducer = createSlice({
         builder.addCase(getProductDetails.fulfilled, (state, action) => {
             // Add product to the state obj
             state.productDetails = action.payload
+            state.loading="fulfilled"
         })
         builder.addCase(getAllProducts.fulfilled, (state, action) => {
             // Add product to the state obj

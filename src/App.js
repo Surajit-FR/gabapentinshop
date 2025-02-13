@@ -14,8 +14,8 @@ function App() {
       <Provider store={store}>
         <Preloader />
         <Navbar />
-        <Thankyou />
-        {/* <AllRoutes /> */}
+        {/* <Thankyou /> */}
+        <AllRoutes />
         <Fotter />
         
       </Provider>

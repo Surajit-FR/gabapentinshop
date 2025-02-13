@@ -1,6 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Thankyou = () => {
+  const navigate= useNavigate()
+  const onClickHome= ()=>{
+    navigate('/home')
+  }
   return (
     <div>
       
@@ -9,7 +14,7 @@ const Thankyou = () => {
                 <h1>Thank you !</h1>
                 <p>Thanks for subscribing to our news letter.  </p>
                 <p>you should receive a confirmation email soon  </p>
-                <button className="go-home">
+                <button className="go-home" onClick={()=>onClickHome()}>
                     go home
                 </button>
             </div>

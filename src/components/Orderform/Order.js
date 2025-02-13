@@ -5,13 +5,20 @@ import { getAllProducts } from '../../store/thunks/productThunk';
 import { useDispatch, useSelector } from 'react-redux';
 import emailjs from '@emailjs/browser';
 import Preloader from "../Preloader/Preloader";
+import { useNavigate } from "react-router-dom";
 
 const SERVICE_ID = "service_jffft35"
 const YOUR_TEMPLATE_ID = "template_2ynn5ap"
 const YOUR_PUBLIC_KEY = "mon7ZTBXHdv7oXhEK"
 
 const Order = () => {
+    usePageMeta({
+        title: 'Order',
+        description: 'Gabapentinshop Order',
+        keywords: 'Gabapentinshop Order',
+    });
     const { productsPercategory } = useSelector(state => state.products)
+    const navigate = useNavigate()
     const tempProductData = localStorage.getItem("productDate")
     const form = useRef();
     const dispatch = useDispatch()
@@ -35,7 +42,6 @@ const Order = () => {
     }, [dispatch])
 
     const validateValues = (inputValues) => {
-        console.log("triggered")
         let errors = {};
         if (!inputValues.product) {
             errors.product = "Product Required";
@@ -90,25 +96,26 @@ const Order = () => {
     }
     const finishSubmit = useCallback(() => {
         setLoading(true)
-        emailjs
-            .sendForm(SERVICE_ID, YOUR_TEMPLATE_ID, form.current, {
-                publicKey: YOUR_PUBLIC_KEY,
-            })
-            .then(
-                () => {
-                    console.log('SUCCESS!');
-                    setSubmitting(false)
-                    setLoading(false)
-                    alert("Form Submitted Successfully")
-                },
-                (error) => {
-                    console.log('FAILED...', error.text);
-                    setSubmitting(false)
-                    setLoading(false)
-                    alert("Something Went Wrong...Please try Again Later")
+        navigate('/thank-you')
+        // emailjs
+        //     .sendForm(SERVICE_ID, YOUR_TEMPLATE_ID, form.current, {
+        //         publicKey: YOUR_PUBLIC_KEY,
+        //     })
+        //     .then(
+        //         () => {
+        //             console.log('SUCCESS!');
+        //             setSubmitting(false)
+        //             setLoading(false)
+        //             alert("Form Submitted Successfully")
+        //         },
+        //         (error) => {
+        //             console.log('FAILED...', error.text);
+        //             setSubmitting(false)
+        //             setLoading(false)
+        //             alert("Something Went Wrong...Please try Again Later")
 
-                },
-            );
+        //         },
+        //     );
         // setSubmitting(false)
     }, [])
 
@@ -117,11 +124,7 @@ const Order = () => {
             finishSubmit();
         }
     }, [errors, submitting, finishSubmit]);
-    usePageMeta({
-        title: 'Order',
-        description: 'Gabapentinshop Order',
-        keywords: 'Gabapentinshop Order',
-    });
+
     useEffect(() => {
         if (selectedProduct) {
             setFormData(prevState => ({

@@ -17,6 +17,7 @@ import TermsConditions from '../components/Terms/TermsConditions';
 import ReturnsPolicy from '../components/Returns/ReturnsPolicy';
 // import Fotter from '../Fotter';
 import Backtotop from '../Backtotop';
+import Thankyou from '../components/Thankyou/Thankyou';
 // import Preloader from '../components/Preloader/Preloader';
 // import Navbar from '../Navbar';
 
@@ -43,6 +44,7 @@ const AllRoutes = () => {
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/tnc" element={<TermsConditions />} />
               <Route path="/returns-policy" element={<ReturnsPolicy />} />
+              <Route path="/thank-you" element={<Thankyou />} />
           </Routes>
           {/* Define Routes */}
           {/* <Fotter /> */}

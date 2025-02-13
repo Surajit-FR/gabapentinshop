@@ -43,7 +43,7 @@ const Order = () => {
             errors.firstName = "First Name is Required";
         }
         if (!inputValues.lastName) {
-            errors.lastName = "LastName is Required";
+            errors.lastName = "Last Name is Required";
         }
         if (!inputValues.phoneNumber) {
             errors.phoneNumber = "Phone Number is Required";
@@ -61,7 +61,7 @@ const Order = () => {
             errors.state = "State is required";
         }
         if (!inputValues.zip) {
-            errors.zip = "ZipCode is required";
+            errors.zip = "Zip Code is required";
         }
         if (!inputValues.country) {
             errors.country = "Country is required";

@@ -96,26 +96,27 @@ const Order = () => {
     }
     const finishSubmit = useCallback(() => {
         setLoading(true)
-        navigate('/thank-you')
-        // emailjs
-        //     .sendForm(SERVICE_ID, YOUR_TEMPLATE_ID, form.current, {
-        //         publicKey: YOUR_PUBLIC_KEY,
-        //     })
-        //     .then(
-        //         () => {
-        //             console.log('SUCCESS!');
-        //             setSubmitting(false)
-        //             setLoading(false)
-        //             alert("Form Submitted Successfully")
-        //         },
-        //         (error) => {
-        //             console.log('FAILED...', error.text);
-        //             setSubmitting(false)
-        //             setLoading(false)
-        //             alert("Something Went Wrong...Please try Again Later")
+        emailjs
+            .sendForm(SERVICE_ID, YOUR_TEMPLATE_ID, form.current, {
+                publicKey: YOUR_PUBLIC_KEY,
+            })
+            .then(
+                () => {
+                    console.log('SUCCESS!');
+                    setSubmitting(false)
+                    setLoading(false)
+                    navigate('/thank-you')
 
-        //         },
-        //     );
+                    // alert("Form Submitted Successfully")
+                },
+                (error) => {
+                    console.log('FAILED...', error.text);
+                    setSubmitting(false)
+                    setLoading(false)
+                    alert("Something Went Wrong...Please try Again Later")
+
+                },
+            );
         // setSubmitting(false)
     }, [])
 
@@ -150,7 +151,7 @@ const Order = () => {
     }, [])
     return (
         <div>
-            
+
             <div className='online_order'>
                 <div className='container'>
                     {loading ? (

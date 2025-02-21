@@ -37,6 +37,11 @@ const Haeder_navbar_menu = () => {
     localStorage.setItem("categoryName", name)
     localStorage.setItem("catId", id)
     navigate(`/shop-now/${slug}`)
+    setIsOpen(false)
+    const toggler = document.querySelector(".navbar-toggler")
+    const togglerChild = document.querySelector("#navbarNav")
+    toggler.classList.add("collapsed")
+    togglerChild.classList.remove("show")
   }
 
   const onClickShopNow = () => {

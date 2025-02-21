@@ -528,6 +528,10 @@ a{
   background: #eef6ff;
   padding:15px;
   border: 4px solid #fff;
+  /* white-space: nowrap; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 2
 }
 .min_box .text_v h3{
   font-size: 20px;
@@ -536,15 +540,18 @@ a{
   padding:0;
   margin:0 0 10px 0;
   height: 62px;
+  /* overflow-x: hidden;
+  overflow-y: scroll;
+  transition: all 500ms ease-in-out; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 2
+}
+/* .min_box .text_v h3:hover{
   overflow-x: hidden;
   overflow-y: scroll;
-  transition: all 500ms ease-in-out;
-}
-.min_box .text_v h3:hover{
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-.min_box .text_v h3::-webkit-scrollbar-track
+} */
+/* .min_box .text_v h3::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.0);
 	border-radius: 10px;
@@ -561,7 +568,7 @@ a{
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,.0);
 	background-color:#018bc8;
-}
+} */
 
 
 .min_box .text_v p{

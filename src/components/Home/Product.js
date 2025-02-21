@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getAllProducts } from '../../store/thunks/productThunk';
 import { useDispatch, useSelector } from 'react-redux';
 import Preloader from '../Preloader/Preloader';
@@ -11,7 +11,7 @@ import Preloader from '../Preloader/Preloader';
 const Product = () => {
     const { productsPercategory } = useSelector(state => state.products)
     const dispatch = useDispatch()
-    
+    const navigate = useNavigate()
     useEffect(() => {
         dispatch(getAllProducts())
     }, [dispatch])
@@ -52,7 +52,10 @@ const Product = () => {
             },
         ],
     }
-
+    const onClickBuyNow = (id, slug) => {
+        localStorage.setItem("prodId", id)
+        navigate(`/product-details/${slug}`)
+    }
     return (
         <div>
 
@@ -70,29 +73,39 @@ const Product = () => {
 
                     <Slider {...productslider}>
                         {
-                            productsPercategory && productsPercategory.length>0 && productsPercategory.map(product=>(
+                            productsPercategory && productsPercategory.length > 0 && productsPercategory.map(product => (
                                 <div key={product.id}>
-                                <div className="post-slide">
-                                    <div className="post-img">
-                                        <div className="min_box">
-                                            <div className="box7" >
-                                                <img className="pic-1" src={product.image} alt='pic' style={{objectFit:'contain'}}/>
-                                                {/* <div className="box-content">
+                                    <div className="post-slide">
+                                        <div className="post-img">
+                                            <div className="min_box">
+                                                <div className="box7" >
+                                                    <img className="pic-1" src={product.image} alt='pic' style={{ objectFit: 'contain' }} />
+                                                    {/* <div className="box-content">
                                                     <div className="icon">
                                                         <Link to="/">Add To Cart</Link>
                                                     </div>
                                                 </div> */}
-                                            </div>
-                                            <div className="text_v">
-                                                <h3>{product.title}</h3>
-                                                <Link to={`/product-details/${product.id}`} className="cl_iert">Buy Now</Link>
-                                                <span className="n_per">${product.regular_price}</span>
-                                                <div className="clearfix"></div>
+                                                </div>
+                                                <div className="text_v"
+                                                >
+                                                    <h3>{product.title}</h3>
+                                                    <div
+                                                        onClick={() => onClickBuyNow(product.id, product.slug)}
+
+                                                    >
+
+                                                        <Link
+                                                            //  to={`/product-details/${product.slug}`} 
+                                                            className="cl_iert">Buy Now</Link>
+                                                        <span className="n_per">${product.regular_price}</span>
+                                                        <div className="clearfix"></div>
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             ))
                         }
                     </Slider>

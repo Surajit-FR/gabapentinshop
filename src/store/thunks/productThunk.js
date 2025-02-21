@@ -37,7 +37,8 @@ export const mapProductsPerCategory = createAsyncThunk(
       const updatedRes = {
         categoryName:category.name,
         categoryId: category.id,
-        products: response.data.result.product_list.map(item=>item)
+        categorySlug: category.slug,
+        products: response.data.result.product_list
       }
       return updatedRes
     }
@@ -45,6 +46,7 @@ export const mapProductsPerCategory = createAsyncThunk(
       return {
         categoryName:category.name,
         categoryId: category.id,
+        categorySlug: category.slug,
         products:[]
       }
     }

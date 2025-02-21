@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllBlogs } from '../../store/thunks/blogThunk'
 
@@ -8,6 +8,11 @@ const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "O
 const Blog = () => {
     const dispatch = useDispatch()
     const { blogs } = useSelector(state => state.blogs)
+    const navigate = useNavigate()
+    const onClickBlog = (id, slug) => {
+        localStorage.setItem("blogId", id)
+        navigate(`/blog/${slug}`)
+    }
     useEffect(() => {
         dispatch(getAllBlogs())
     }, [dispatch])
@@ -32,36 +37,51 @@ const Blog = () => {
                                             <span className="day">{new Date(item.date).getDate()}</span>
                                             <span className="month">{month[new Date(item.date).getMonth()]} {new Date(item.date).getFullYear()}</span>
                                         </div>
-                                        <Link to={`/blog-single/${item.id}`}>
+                                        <Link to={`/blog/${item.id}`}>
                                             <img src={item.image || require("../../assets/blog/1.jpg")} alt="Image" />
                                         </Link>
                                     </div>
                                     <div className="post-body">
                                         <div className="post-meta d-flex align-items-center">
-                                            <div className="post-meta-cat">
-                                                <Link to={`/blog-single/${item.id}`}>{item.title}</Link>
+                                            <div className="post-meta-cat"
+                                                onClick={() => onClickBlog(item.id, item.slug)}
+
+                                            >
+                                                <Link
+                                                // to={`/blog/${item.id}`}
+                                                >{item.title}</Link>
                                             </div>
                                             <Link className="post-meta-author" to="/">{item.author}</Link>
                                         </div>
-                                        <div className="post-title">
-                                            <Link to={`/blog-single/${item.id}`}>
-                                            <p
-                                                style={{
-                                                    overflow: "hidden",
-                                                    display: "-webkit-box",
-                                                    WebkitLineClamp: 3,
-                                                    lineClamp: 2,
-                                                    WebkitBoxOrient: "vertical",
-                                                }}
+                                        <div className="post-title"
+                                            onClick={() => onClickBlog(item.id, item.slug)}
+                                        >
+                                            <Link
+                                            //  to={`/blog/${item.id}`}
                                             >
-                                                {item.description}
+                                                <p
+                                                    style={{
+                                                        overflow: "hidden",
+                                                        display: "-webkit-box",
+                                                        WebkitLineClamp: 3,
+                                                        lineClamp: 2,
+                                                        WebkitBoxOrient: "vertical",
+                                                    }}
+                                                >
+                                                    {item.description}
                                                 </p>
                                             </Link>
                                         </div>
-                                        <Link to={`/blog-single/${item.id}`} className="read_more">
-                                            <i className="plus-icon">+</i>
-                                            Read More
-                                        </Link>
+                                        <div
+                                            onClick={() => onClickBlog(item.id, item.slug)}
+                                        >
+                                            <Link
+                                                // to={`/blog/${item.slug}`} 
+                                                className="read_more">
+                                                <i className="plus-icon">+</i>
+                                                Read More
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

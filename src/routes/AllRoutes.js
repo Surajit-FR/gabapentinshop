@@ -18,6 +18,7 @@ import ReturnsPolicy from '../components/Returns/ReturnsPolicy';
 // import Fotter from '../Fotter';
 import Backtotop from '../Backtotop';
 import Thankyou from '../components/Thankyou/Thankyou';
+import Index from '../components/Index';
 // import Preloader from '../components/Preloader/Preloader';
 // import Navbar from '../Navbar';
 
@@ -29,14 +30,15 @@ const AllRoutes = () => {
           <Navbar /> */}
           {/* Define Routes */}
           <Routes>
-              <Route path="/home" element={<Home />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/*" element={<Index />} />
               <Route path="/about-us" element={<Aboutinner />} />
               <Route path="/baclofen" element={<Baclofeninner />} />
               <Route path="/shop-now/:id" element={<Shopinner />} />
-              <Route path="/shop-all" element={<Shopinner />} />
+              <Route path="/shop" element={<Shopinner />} />
               <Route path="/product-details/:product_id" element={<ProductDetails />} />
               <Route path="/blog" element={<Bloginner />} />
-              <Route path="/blog-single/:blog_id" element={<Blogsingle />} />
+              <Route path="/blog/:blog_id" element={<Blogsingle />} />
               <Route path="/faq" element={<Faqinner />} />
               <Route path="/contact-us" element={<Contactinner />} />
               <Route path="/order" element={<Order />} />

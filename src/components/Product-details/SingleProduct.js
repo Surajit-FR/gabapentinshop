@@ -21,7 +21,7 @@ const SingleProduct = ({ data }) => {
         navigate(`/order`)
     }
     // const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    // console.log(data)
+
     return (
         <div>
 

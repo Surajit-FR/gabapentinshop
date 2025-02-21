@@ -1,8 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 const Shop_body = ({ products }) => {
+    const navigate = useNavigate()
+    const onClickEnquityNow = (id, slug) =>{
+        localStorage.setItem("prodId",id)
+        // const tempSlug = slug.split(' ').join('-');
+        
+        let tempSlug = slug.split(' ').join('-').replace(/\//g,"-");
+        navigate(`/product-details/${tempSlug}`)
+
+    }
 
     return (
         <div>
@@ -21,9 +30,13 @@ const Shop_body = ({ products }) => {
                                             </div>
                                         </div> */}
                                     </div>
-                                    <div className="text_v">
+                                    <div className="text_v"
+                                        onClick={()=>onClickEnquityNow(prod.id,(prod.slug || prod.post_title))}
+                                    
+                                    >
                                         <h3>{prod.post_title || prod.title}</h3>
-                                        <Link to={`/product-details/${prod.id}`}
+                                        <Link 
+                                        // to={`/product-details/${prod.slug}`}
                                           className="cl_iert">
                                            Enquiry Now
                                             {/* Buy Now */}

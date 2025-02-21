@@ -3,16 +3,22 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import Index from './components/Index';
+// import Index from './components/Index';
 import PrivateOne from './routes/PrivateOne';
+import PublicRouteAccess from './routes/PublicRouteAccess';
 // import PublicRouteAccess from './routes/PublicRouteAccess';
 // import Home from './components/Home/Home';
 
 
 const router = createBrowserRouter([
-  { path: '/', element: <Index /> },
   {
-    path: '*', element: (
+    path: '/*', element:
+      <PublicRouteAccess>
+        <App />
+      </PublicRouteAccess>
+  },
+  {
+    path: '/*', element: (
       <>
         <PrivateOne>
           <App />
@@ -42,8 +48,8 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-    // <App />
-    <RouterProvider router={router} future={{ v7_startTransition: true }} />
+  // <App />
+  <RouterProvider router={router} future={{ v7_startTransition: true }} />
   // </React.StrictMode>
 );
 

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Getfree = () => {
-
+  const navigate = useNavigate()
+const onClickShopNow = () =>{
+localStorage.setItem("catId","all")
+navigate("/shop")
+}
   // const [isModalOpen, setIsModalOpen] = useState(false);
 
   // const openModal = () => setIsModalOpen(true);
@@ -86,8 +90,10 @@ const Getfree = () => {
                             <li>
                               <Link to="/order"> Get Free Quote</Link>
                             </li>
-                            <li>
-                              <Link to="/shop-all"> Shop Now</Link>
+                            <li onClick={()=> onClickShopNow()}>
+                              <Link 
+                              // to="/shop"
+                              > Shop Now</Link>
                             </li>
                         </ul>
                     </div>

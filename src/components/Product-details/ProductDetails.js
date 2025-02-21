@@ -15,12 +15,14 @@ const ProductDetails = () => {
   });
   const dispatch = useDispatch()
   const { productDetails } = useSelector(state => state.products)
-  const { product_id } = useParams()
+  // const { product_id } = useParams()
+  const productId = localStorage.getItem("prodId")
   useEffect(() => {
-    if (product_id) {
-      dispatch(getProductDetails(product_id))
+    if (productId) {
+      dispatch(getProductDetails(productId))
     }
-  }, [product_id, dispatch])
+  }, [productId, dispatch])
+
   return (
     <div>
       <Preloader />

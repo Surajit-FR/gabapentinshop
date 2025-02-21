@@ -14,15 +14,20 @@ const Blog_single_body = ({ data }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const oncategoryClick = (id) => {
-        navigate(`/shop-now/${id}`)
+    const oncategoryClick = (id, slug, name) => {
+        localStorage.setItem("catId",id)
+        navigate(`/shop-now/${slug}`)
+    }
+    const onBlogListClick = (id, slug) => {
+        localStorage.setItem("blogId",id)
+        navigate(`/blog/${slug}`)
     }
     useEffect(() => {
-        if (categories && categories.length > 0) {
-            categories.map(item => (dispatch(mapProductsPerCategory({ id: item.term_id, name: item.name }))))
+        if (categories && categories.length > 0 && mapProductsData.length === 0) {
+            categories.map(item => (dispatch(mapProductsPerCategory({ id: item.term_id, name: item.name, slug: item.slug }))))
         }
 
-    }, [dispatch, categories])
+    }, [dispatch, categories, mapProductsData])
     useEffect(() => {
         dispatch(getAllBlogs())
     }, [dispatch])
@@ -31,6 +36,7 @@ const Blog_single_body = ({ data }) => {
             dispatch(cleanup())
         }
     }, [dispatch])
+
     return (
 
         <div>
@@ -63,14 +69,25 @@ const Blog_single_body = ({ data }) => {
                                         {blogs && blogs.length > 0 && blogs.slice(0, 3).map(item => (
                                             <div className="widget-post-item d-flex align-items-center" key={item.id}>
                                                 <div className="widget-post-img">
-                                                    <Link to={`/blog-single/${data.id}`}>
+                                                    <Link 
+                                                    // to={`/blog-single/${data.id}`}
+                                                    >
                                                         <img src={require("../../assets/blog/post-1.jpg")} alt="thumb" />
                                                     </Link>
                                                 </div>
                                                 <div className="widget-post-content">
-                                                    <span className="widget-post-date">{month[new Date(data.date).getMonth()]} {new Date(data.date).getDate()}, {new Date(data.date).getFullYear()}</span>
-                                                    <h4 className="widget-post-title">
-                                                        <Link to={`/blog-single/${data.id}`}>{data.title}</Link>
+                                                    {data.date && (
+                                                        <span className="widget-post-date">{
+                                                    
+                                                    month[new Date(data.date).getMonth()]} {new Date(data.date).getDate()}, {new Date(data.date).getFullYear()}</span>
+                                                    )}
+                                                    
+                                                    <h4 className="widget-post-title"
+                                                    onClick={()=>onBlogListClick(item.id, item.slug)}
+                                                    >
+                                                        <Link 
+                                                        // to={`/blog-single/${data.slug}`}
+                                                        >{data.title}</Link>
                                                     </h4>
                                                 </div>
                                             </div>
@@ -112,9 +129,11 @@ const Blog_single_body = ({ data }) => {
                                     <div className="widget-content">
 
                                         <ul className="list-unstyled mb-0">
-                                            {mapProductsData && mapProductsData.length > 0 && mapProductsData.map((cat) => (
-                                                <li key={cat.categoryId} onClick={() => oncategoryClick(cat.categoryId)}>
-                                                    <Link to="#">
+                                            {mapProductsData && mapProductsData.length > 0 && mapProductsData.map((cat,index) => (
+                                                <li key={index} onClick={() => oncategoryClick(cat.categoryId, cat.categorySlug, cat.categoryName)}>
+                                                    <Link 
+                                                    // to="#"
+                                                    >
                                                         <span className="cat-title">{cat.categoryName}</span>
                                                         <span className="cat-count">{cat.products.length}</span>
                                                     </Link>

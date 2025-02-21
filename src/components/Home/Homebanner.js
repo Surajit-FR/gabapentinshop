@@ -1,12 +1,15 @@
 import React from 'react'
-import jQuery from 'jquery'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Homebanner = () => {
-
+const navigate = useNavigate()
+const onClickShopAll = () =>{
+  localStorage.setItem("catId","all")
+  navigate("/shop")
+}
     const homeslider = {
       dots: true,           
       infinite: true,      
@@ -42,13 +45,15 @@ const Homebanner = () => {
                 <div className='cover'>
                   <div className='container'>
                     <div className='header-content'>
-                      <h2>Best Quality Medicationsat <span>Low Prices</span></h2>
+                      <h2>Best Quality Medications at <span>Low Prices</span></h2>
+                      <div onClick ={()=>onClickShopAll()}>
                       <Link
-                       to="/shop-all"
+                      //  to="/shop-all"
                         className="btn-white">
                           <span>Shop Now!</span>
                           <i className="icon-arrow-right"></i>
                       </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -60,13 +65,17 @@ const Homebanner = () => {
                 <div className='cover'>
                   <div className='container'>
                     <div className='header-content'>
-                      <h2>Best Quality Medicationsat <span>Low Prices</span></h2>
+                      <h2>Best Quality Medications at <span>Low Prices</span></h2>
+                      <div
+                      onClick ={()=>onClickShopAll()}
+                      >
                       <Link 
-                      to="/shop-all" 
+                      // to="/shop-all" 
                       className="btn-white">
                           <span>Shop Now!</span>
                           <i className="icon-arrow-right"></i>
                       </Link>
+                      </div>
                     </div>
                   </div>
                 </div>

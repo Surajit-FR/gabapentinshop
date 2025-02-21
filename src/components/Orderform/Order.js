@@ -118,7 +118,7 @@ const Order = () => {
                 },
             );
         // setSubmitting(false)
-    }, [])
+    }, [navigate])
 
     useEffect(() => {
         if (Object.keys(errors).length === 0 && submitting) {

@@ -6,7 +6,8 @@ const initialState = {
     productsPercategory: [],
     productDetails: {},
     loading: 'idle',
-    mapProductsData:[]
+    mapProductsData:[],
+    productId: '',
 }
 
 
@@ -15,6 +16,10 @@ const productReducer = createSlice({
     name: 'products',
     initialState,
     reducers: {
+        updateProductId: (state, action)=>{
+            state.productId = action.payload
+
+        },
         // standard reducer logic, with auto-generated action types per reducer
         cleanup: ()=>{
             return initialState
@@ -37,12 +42,15 @@ const productReducer = createSlice({
         })
         builder.addCase(mapProductsPerCategory.fulfilled, (state, action) => {
             // Add product to the state obj
+            // const dataToPush = state.mapProductsData.filter(item =>item.categoryId !== action.payload.categoryId)
+
             state.mapProductsData.push(action.payload)
         })
     },
 })
 
 export const {
+    updateProductId,
     cleanup,
 } = productReducer.actions
 

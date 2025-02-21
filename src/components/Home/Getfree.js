@@ -6,6 +6,7 @@ const Getfree = () => {
   const navigate = useNavigate()
 const onClickShopNow = () =>{
 localStorage.setItem("catId","all")
+localStorage.setItem("categoryName","Shop")
 navigate("/shop")
 }
   // const [isModalOpen, setIsModalOpen] = useState(false);
@@ -92,7 +93,7 @@ navigate("/shop")
                             </li>
                             <li onClick={()=> onClickShopNow()}>
                               <Link 
-                              // to="/shop"
+                              to="/shop"
                               > Shop Now</Link>
                             </li>
                         </ul>

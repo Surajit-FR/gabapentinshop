@@ -14,18 +14,18 @@ const Shopinner = () => {
     keywords: 'Gabapentinshop Shop',
   });
   const { productsPercategory } = useSelector(state => state.products)
-  const {catParams} = useParams()
+  const { catParams } = useParams()
   const catId = localStorage.getItem("catId")
-  const categoryName= localStorage.getItem("categoryName")
+  const categoryName = localStorage.getItem("categoryName")
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (catId 
+    if (catId
       && catId !== "all"
     ) {
       dispatch(getProductsPerCategory(catId))
     }
-  }, [dispatch, catId,catParams])
+  }, [dispatch, catId, catParams])
   useEffect(() => {
     if (catId === "all") {
       dispatch(getAllProducts())
@@ -36,7 +36,11 @@ const Shopinner = () => {
     <div>
 
       <Inner_common_banner title={categoryName} subtitle={categoryName} background={shopinnerimg} />
-      {productsPercategory && productsPercategory.length > 0 ? <Shop_body products={productsPercategory} /> : <div>No Products Found</div>}
+      {productsPercategory && productsPercategory.length > 0 ? <Shop_body products={productsPercategory} /> :
+        <div className='col-lg-12 col-md-12 col-sm-12' style={{ height: "400px", justifyContent: "center", alignItems: "center", display: 'flex' }}>
+          <p style={{ fontWeight: 'bold' }}>No Products Found</p>
+        </div>
+      }
 
     </div>
   )

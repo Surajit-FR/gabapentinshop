@@ -187,7 +187,7 @@ const Haeder_navbar_menu = () => {
                 <ul className='menu_shop'>
                   <li onClick={() => onClickShopNow()}>
                     <Link className='sh_1'
-                    //  to='/shop-all'
+                     to='/shop'
                     >
                       Shop Now
                     </Link>

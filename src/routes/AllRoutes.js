@@ -44,7 +44,7 @@ const AllRoutes = () => {
               <Route path="/order" element={<Order />} />
               <Route path="/delivery-information" element={<DeliveryInformation />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/tnc" element={<TermsConditions />} />
+              <Route path="/terms-and-conditions" element={<TermsConditions />} />
               <Route path="/returns-policy" element={<ReturnsPolicy />} />
               <Route path="/thank-you" element={<Thankyou />} />
           </Routes>

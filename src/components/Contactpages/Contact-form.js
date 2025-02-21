@@ -93,7 +93,7 @@ const Contact_form = () => {
                                     healthcare provider within one business day.
                                 </p>
                             </div>
-                            <Link to="/shop-all" className="shop_btn">
+                            <Link to="/shop" className="shop_btn">
                                 <span>Shop Now</span>
                                 <i className="icon-arrow-right"></i>
                             </Link>

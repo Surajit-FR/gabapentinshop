@@ -40,7 +40,7 @@ function Fotter() {
                                 <Link to='/privacy-policy'>Privacy Policy</Link>
                             </li>
                             <li>
-                                <Link to='/tnc'>Terms & Conditions</Link>
+                                <Link to='/terms-and-conditions'>Terms & Conditions</Link>
                             </li>
                         </ul>
                     </div>

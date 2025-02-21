@@ -8,6 +8,7 @@ const Homebanner = () => {
 const navigate = useNavigate()
 const onClickShopAll = () =>{
   localStorage.setItem("catId","all")
+  localStorage.setItem("categoryName","Shop")
   navigate("/shop")
 }
     const homeslider = {
@@ -70,7 +71,7 @@ const onClickShopAll = () =>{
                       onClick ={()=>onClickShopAll()}
                       >
                       <Link 
-                      // to="/shop-all" 
+                      to="/shop" 
                       className="btn-white">
                           <span>Shop Now!</span>
                           <i className="icon-arrow-right"></i>

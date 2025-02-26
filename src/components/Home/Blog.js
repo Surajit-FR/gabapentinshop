@@ -37,9 +37,13 @@ const Blog = () => {
                                             <span className="day">{new Date(item.date).getDate()}</span>
                                             <span className="month">{month[new Date(item.date).getMonth()]} {new Date(item.date).getFullYear()}</span>
                                         </div>
-                                        <Link to={`/blog/${item.id}`}>
-                                            <img src={item.image || require("../../assets/blog/1.jpg")} alt="Image" />
-                                        </Link>
+                                        <div
+                                            onClick={() => onClickBlog(item.id, item.slug)}
+                                        >
+                                            <Link to={`/blog/${item.slug}`}>
+                                                <img src={item.image || require("../../assets/blog/1.jpg")} alt="Image" />
+                                            </Link>
+                                        </div>
                                     </div>
                                     <div className="post-body">
                                         <div className="post-meta d-flex align-items-center">
@@ -76,7 +80,7 @@ const Blog = () => {
                                             onClick={() => onClickBlog(item.id, item.slug)}
                                         >
                                             <Link
-                                                // to={`/blog/${item.slug}`} 
+                                                to={`/blog/${item.slug}`}
                                                 className="read_more">
                                                 <i className="plus-icon">+</i>
                                                 Read More

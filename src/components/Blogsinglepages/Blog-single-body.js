@@ -15,6 +15,7 @@ const Blog_single_body = ({ data }) => {
     const navigate = useNavigate()
 
     const oncategoryClick = (id, slug, name) => {
+        localStorage.setItem("categoryName", name)
         localStorage.setItem("catId",id)
         navigate(`/shop-now/${slug}`)
     }
@@ -36,6 +37,7 @@ const Blog_single_body = ({ data }) => {
             dispatch(cleanup())
         }
     }, [dispatch])
+
 
     return (
 
@@ -72,22 +74,22 @@ const Blog_single_body = ({ data }) => {
                                                     <Link 
                                                     // to={`/blog-single/${data.id}`}
                                                     >
-                                                        <img src={require("../../assets/blog/post-1.jpg")} alt="thumb" />
+                                                        <img src={item.image || require("../../assets/blog/post-1.jpg")} alt="thumb" />
                                                     </Link>
                                                 </div>
                                                 <div className="widget-post-content">
-                                                    {data.date && (
+                                                    {item.date && (
                                                         <span className="widget-post-date">{
                                                     
-                                                    month[new Date(data.date).getMonth()]} {new Date(data.date).getDate()}, {new Date(data.date).getFullYear()}</span>
+                                                    month[new Date(item.date).getMonth()]} {new Date(item.date).getDate()}, {new Date(item.date).getFullYear()}</span>
                                                     )}
                                                     
                                                     <h4 className="widget-post-title"
-                                                    onClick={()=>onBlogListClick(item.id, item.slug)}
+                                                    // onClick={()=>onBlogListClick(item.id, item.slug)}
                                                     >
                                                         <Link 
                                                         // to={`/blog-single/${data.slug}`}
-                                                        >{data.title}</Link>
+                                                        >{item.title}</Link>
                                                     </h4>
                                                 </div>
                                             </div>

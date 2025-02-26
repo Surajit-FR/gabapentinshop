@@ -46,3 +46,49 @@ export const GETBLOGDETAILS = ( blogid ) => {
     }
     return API.get(`/ws-blog-details.php?${queryString.toString()}`);
 };
+
+//get all HOME PAGE DATA
+
+export const GETALLHOMEDATA = () => {
+    return API.get(`/ws-homepage.php`);
+};
+//get all FOOTER DATA
+
+export const GETFOOTERDATA = () => {
+    return API.get(`/ws-setting.php`);
+};
+//get all DELIVERY INFORMATION DATA
+
+export const GETDELIVERYINFODATA = () => {
+    return API.get(`/ws-delivery-information.php`);
+};
+//get all Privacy Policy DATA
+
+export const GETALLPRIVACYPOLICY = () => {
+    return API.get(`/ws-privacy-policy.php`);
+};
+//get all TERMS CONDITIONS DATA
+
+export const GETALLTERMSDATA = () => {
+    return API.get(`/ws-terms-and-conditions.php`);
+};
+//get all TERMS CONDITIONS DATA
+
+export const GETRETURNSPOLICY = () => {
+    return API.get(`/ws-returns-policy.php`);
+};
+//get all Faq Data
+
+export const GETALLFAQDATA = () => {
+    return API.get(`/ws-faq.php`);
+};
+//get all contact us Data
+
+export const GETALLCONTACTUSDATA = () => {
+    return API.get(`ws-contactus.php`);
+};
+//get all settings Data
+
+export const GETALLSETTINGSDATA = () => {
+    return API.get(`ws-setting.php`);
+};

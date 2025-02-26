@@ -2,7 +2,8 @@ import React from 'react'
 import { useState, useEffect, useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const Contact_form = () => {
+const Contact_form = ({ data }) => {
+
     const navigate = useNavigate()
     const [formDta, setFormData] = useState({
     })
@@ -39,6 +40,21 @@ const Contact_form = () => {
         setErrors(validateValues(formDta));
         setSubmitting(true);
 
+    }
+    const dataToEmit = data && data.length > 0 && data.map((item) =>
+
+        item.get_in_touch_content
+    )
+    const htmlContent = (value) => {
+        if (value && value.length > 0) {
+            return `<div>${value.toString()} </div>`
+        }
+        return ''
+
+    }
+    const tc = document.getElementById("textContent")
+    if (tc && dataToEmit && dataToEmit.length > 0) {
+        tc.innerHTML = htmlContent(dataToEmit)
     }
 
     const finishSubmit = useCallback(() => {
@@ -77,21 +93,16 @@ const Contact_form = () => {
                     <div className="row">
                         <div className="col-sm-12 col-md-12 col-lg-7">
                             <div className="heading-layout2 mb-50">
-                                <h3 className="mb-3">Get In Touch With Your Nearest Local Health Business Sales Executive</h3>
+                                {data && data.length > 0 && data.map((item, index) => (
+
+                                    <h3 className="mb-3" key={index}>{item.get_in_touch_caption}</h3>
+                                ))}
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-sm-12 col-md-12 col-lg-4">
-                            <div className="text-block">
-                                <p className="text-block-desc">
-                                    Depending on the nature of your enquiry, the customer care centre staff will then
-                                    distribute your request for consultation to the appropriate Laboratory Medicine discipline.
-                                </p>
-                                <p className="text-block-desc">
-                                    A member of the Medical/Scientific Staff will get back to the requesting
-                                    healthcare provider within one business day.
-                                </p>
+                            <div className="text-block" id="textContent">
                             </div>
                             <Link to="/shop" className="shop_btn">
                                 <span>Shop Now</span>
@@ -103,46 +114,46 @@ const Contact_form = () => {
                                 <div className="row">
                                     <div className="col-sm-12 col-md-4 col-lg-4">
                                         <div className="form-group">
-                                            <input type="text" className="form-control" placeholder="Name" name="name" onChange={onChangeValue}/>
+                                            <input type="text" className="form-control" placeholder="Name" name="name" onChange={onChangeValue} />
                                         </div>
                                         {errors.name ? (
-                                        <p className="error">
-                                            {errors.name}
-                                        </p>
-                                    ) : null}
+                                            <p className="error">
+                                                {errors.name}
+                                            </p>
+                                        ) : null}
                                     </div>
                                     <div className="col-sm-12 col-md-4 col-lg-4">
                                         <div className="form-group">
-                                            <input type="email" className="form-control" placeholder="Email" name="email" onChange={onChangeValue}/>
+                                            <input type="email" className="form-control" placeholder="Email" name="email" onChange={onChangeValue} />
                                         </div>
                                         {errors.email ? (
-                                        <p className="error">
-                                            {errors.email}
-                                        </p>
-                                    ) : null}
+                                            <p className="error">
+                                                {errors.email}
+                                            </p>
+                                        ) : null}
                                     </div>
                                     <div className="col-sm-12 col-md-4 col-lg-4">
                                         <div className="form-group">
-                                            <input type="text" className="form-control" placeholder="Phone" name="phone" onChange={onChangeValue}/>
+                                            <input type="text" className="form-control" placeholder="Phone" name="phone" onChange={onChangeValue} />
                                         </div>
                                         {errors.phone ? (
-                                        <p className="error">
-                                            {errors.phone}
-                                        </p>
-                                    ) : null}
+                                            <p className="error">
+                                                {errors.phone}
+                                            </p>
+                                        ) : null}
                                     </div>
                                     <div className="col-12">
                                         <div className="form-group">
                                             <textarea className="form-control height_1" placeholder="Additional Details"
                                                 name="message"
                                                 onChange={onChangeValue}
-                                                ></textarea>
+                                            ></textarea>
                                         </div>
                                         {errors.message ? (
-                                        <p className="error">
-                                            {errors.message}
-                                        </p>
-                                    ) : null}
+                                            <p className="error">
+                                                {errors.message}
+                                            </p>
+                                        ) : null}
                                         <button type="submit" className="request_btn mt-10">
                                             <span>Submit Request</span> <i className="icon-arrow-right"></i>
                                         </button>

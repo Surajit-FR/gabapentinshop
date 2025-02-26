@@ -17,9 +17,20 @@ const blogReducer = createSlice({
     },
     extraReducers: (builder) => {
         // Add reducers for additional action types here, and handle loading state as needed
+        builder.addCase(getAllBlogs.pending, (state, action) => {
+            // Add user to the state array
+            state.loading = "All blogs pending"
+        })
+        // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(getAllBlogs.fulfilled, (state, action) => {
             // Add user to the state array
             state.blogs = action.payload
+            state.loading = "idle"
+        })
+        // Add reducers for additional action types here, and handle loading state as needed
+        builder.addCase(getAllBlogs.rejected, (state, action) => {
+            // Add user to the state array
+            state.loading = "failed"
         })
         builder.addCase(getBlogDetails.fulfilled, (state, action) => {
             // Add user to the state array

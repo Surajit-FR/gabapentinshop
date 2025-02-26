@@ -8,17 +8,17 @@ import usePageMeta from '../Seo/Seo'
 const Bloginner = () => {
 
   usePageMeta({
-      title:'Blogs',
-      description:'Gabapentinshop Blogs',
-      keywords:'Gabapentinshop Blogs',
+    title: 'Blogs',
+    description: 'Gabapentinshop Blogs',
+    keywords: 'Gabapentinshop Blogs',
   });
 
   return (
-    <>
- 
-      <Inner_common_banner title={"Blogs"} subtitle={"Blogs"} background={bloginnerimg}/>
-      <Bloggrid/>
-    </>
+
+          <>
+            <Inner_common_banner title={"Blogs"} subtitle={"Blogs"} background={bloginnerimg} />
+            <Bloggrid />
+          </>
   )
 }
 

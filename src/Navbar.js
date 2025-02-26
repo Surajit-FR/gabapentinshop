@@ -33,15 +33,19 @@ const Haeder_navbar_menu = () => {
       setIsSticky(false);
     }
   };
+//css management mobile bootstrap
+  const onClickNavitem = () =>{
+    const toggler = document.querySelector(".navbar-toggler")
+    const togglerChild = document.querySelector("#navbarNav")
+    toggler.classList.add("collapsed")
+    togglerChild.classList.remove("show")
+  }
   const oncategoryClick = (id, slug, name) => {
     localStorage.setItem("categoryName", name)
     localStorage.setItem("catId", id)
     navigate(`/shop-now/${slug}`)
     setIsOpen(false)
-    const toggler = document.querySelector(".navbar-toggler")
-    const togglerChild = document.querySelector("#navbarNav")
-    toggler.classList.add("collapsed")
-    togglerChild.classList.remove("show")
+    onClickNavitem()
   }
 
   const onClickShopNow = () => {
@@ -127,12 +131,12 @@ const Haeder_navbar_menu = () => {
             <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
               <ul className="navbar-nav harder_menu">
                 {/* Home */}
-                <li className="nav-item">
+                <li className="nav-item" onClick={()=>onClickNavitem()}>
                   <NavLink className="nav-link" to="/" end>
                     Home
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" onClick={()=>onClickNavitem()}>
                   <NavLink className="nav-link" to="/about-us">
                     About Us
                   </NavLink>
@@ -166,18 +170,18 @@ const Haeder_navbar_menu = () => {
                   </ul>
                 </li>
 
-                <li className="nav-item">
+                <li className="nav-item" onClick={()=>onClickNavitem()}>
                   <NavLink className="nav-link" to="/blog">
                     Blog
                   </NavLink>
                 </li>
 
-                <li className="nav-item">
+                <li className="nav-item" onClick={()=>onClickNavitem()}>
                   <NavLink className="nav-link" to="/faq">
                     FAQ
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" onClick={()=>onClickNavitem()}>
                   <NavLink className="nav-link" to="/contact-us">
                     Contact Us
                   </NavLink>

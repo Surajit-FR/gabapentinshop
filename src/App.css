@@ -950,6 +950,8 @@ a{
 .post-item .post-img img {
   transition: all 0.9s ease;
   width: 100%;
+  height: 400px;
+  object-fit: cover;
   margin: 0;
 }
 .post-item .post-body {
@@ -979,6 +981,11 @@ a{
   padding-right: 15px;
   font-weight: 700;
   font-size: 16px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  white-space: normal;
+  overflow: hidden;
 }
 .post-item:hover .post-meta-cat a{ color:#fff;}
 .post-item .post-meta-cat a::after {
@@ -999,6 +1006,11 @@ a{
 }
 .post-item .post-title a {
   color: #003d58;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  white-space: normal;
+  overflow: hidden;
 }
 .post-item:hover .post-title a{ color:#fff; }
 

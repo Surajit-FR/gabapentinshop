@@ -11,12 +11,12 @@ function App() {
     <>
       <Provider store={store}>
         <div className="preLoading">
-        <Navbar />
-        <AllRoutes />
-        <Fotter />
+          <Navbar />
+          <AllRoutes />
+          <Fotter />
         </div>
       </Provider>
-      
+
     </>
   );
 }

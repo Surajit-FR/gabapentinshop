@@ -38,7 +38,7 @@ const Shop_body = ({ products }) => {
                                         <Link 
                                         // to={`/product-details/${prod.slug}`}
                                           className="cl_iert">
-                                           Shop Now
+                                           View Details
                                             {/* Buy Now */}
                                         </Link>
                                         <span className="n_per">${prod.regular_price}</span>

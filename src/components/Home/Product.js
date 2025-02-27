@@ -96,7 +96,7 @@ const Product = () => {
 
                                                         <Link
                                                             //  to={`/product-details/${product.slug}`} 
-                                                            className="cl_iert">Buy Now</Link>
+                                                            className="cl_iert">View Details</Link>
                                                         <span className="n_per">${product.regular_price}</span>
                                                         <div className="clearfix"></div>
                                                     </div>

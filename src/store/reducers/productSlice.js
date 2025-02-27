@@ -27,18 +27,42 @@ const productReducer = createSlice({
     },
     extraReducers: (builder) => {
         // Add reducers for additional action types here, and handle loading state as needed
+        builder.addCase(getProductsPerCategory.pending, (state, action) => {
+            // Add products to the state array
+            state.productsPercategory = action.payload
+            state.loading = "products per cat loading"
+        })
+        // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(getProductsPerCategory.fulfilled, (state, action) => {
             // Add products to the state array
             state.productsPercategory = action.payload
+            state.loading = "idle"
+        })
+        // Add reducers for additional action types here, and handle loading state as needed
+        builder.addCase(getProductsPerCategory.rejected, (state, action) => {
+            // Add products to the state array
+            state.productsPercategory = action.payload
+            state.loading = "idle"
         })
         builder.addCase(getProductDetails.fulfilled, (state, action) => {
             // Add product to the state obj
             state.productDetails = action.payload
             state.loading="fulfilled"
         })
+        builder.addCase(getAllProducts.pending, (state, action) => {
+            // Add product to the state obj
+            state.productsPercategory = action.payload
+            state.loading= "All Products Loading"
+        })
         builder.addCase(getAllProducts.fulfilled, (state, action) => {
             // Add product to the state obj
             state.productsPercategory = action.payload
+            state.loading= "idle"
+        })
+        builder.addCase(getAllProducts.rejected, (state, action) => {
+            // Add product to the state obj
+            state.productsPercategory = action.payload
+            state.loading= "failed"
         })
         builder.addCase(mapProductsPerCategory.fulfilled, (state, action) => {
             // Add product to the state obj

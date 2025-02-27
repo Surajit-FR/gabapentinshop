@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { getAllBlogs } from '../../store/thunks/blogThunk'
-import Preloader from '../Preloader/Preloader'
+import CustomLoader from '../shared/CustomLoader'
+
 
 
 const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -20,16 +21,11 @@ const Bloggrid = () => {
 
     return (
         <>
-                {loading === "All blogs pending" ? 
-                
-                
-                <div className='col-lg-12 col-md-12 col-sm-12' style={{ height: "400px", justifyContent: "center", alignItems: "center", display: 'flex' }}>
+            {loading === "All blogs pending" ?
+                <CustomLoader />
 
-                <div className="spinner-border text-primary" role="status"></div> 
-                </div>
-                
                 :
-            <div className='blog_grid blog-layout1'>
+                <div className='blog_grid blog-layout1'>
                     <div className='container'>
                         <div className='row'>
                             {blogs && blogs.length > 0 && blogs.map(blog => (
@@ -92,8 +88,8 @@ const Bloggrid = () => {
                         </div>
                     </div>
 
-            </div>
-                }
+                </div>
+            }
 
         </>
     )

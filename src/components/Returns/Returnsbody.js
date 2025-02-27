@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Returnsbody = ({ data }) => {
-  console.log({ data })
   return (
     <div>
       <div className='policy_box'>

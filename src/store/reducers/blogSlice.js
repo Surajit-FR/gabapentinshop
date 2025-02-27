@@ -32,9 +32,19 @@ const blogReducer = createSlice({
             // Add user to the state array
             state.loading = "failed"
         })
+        builder.addCase(getBlogDetails.pending, (state, action) => {
+            // Add user to the state array
+            state.loading = "single Blog Loading"
+        })
         builder.addCase(getBlogDetails.fulfilled, (state, action) => {
             // Add user to the state array
             state.singleBlog = action.payload
+            state.loading = "idle"
+        })
+        builder.addCase(getBlogDetails.rejected, (state, action) => {
+            // Add user to the state array
+            state.singleBlog = action.payload
+            state.loading = "failed"
         })
     },
 })

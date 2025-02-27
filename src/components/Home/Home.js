@@ -10,6 +10,7 @@ import Getfree from './Getfree'
 import usePageMeta from '../Seo/Seo'
 import { useDispatch, useSelector } from 'react-redux'
 import { getHomePageData } from '../../store/thunks/homeThunk'
+import Preloader from '../Preloader/Preloader'
 
 const Home = () => {
 
@@ -28,6 +29,7 @@ const Home = () => {
 
     return (
         <>
+        <Preloader/>
             <Homebanner data={homeData?.banner_data}/>
             <About 
             data={homeData?.about_data} 

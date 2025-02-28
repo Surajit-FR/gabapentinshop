@@ -24,7 +24,6 @@ const Blog_single_body = ({ data }) => {
     }
     const tc = document.getElementById("textContent")
     if (tc && data && data.description) {
-        console.log(data.description)
         tc.innerHTML = htmlContent(data.description)
     }
     const oncategoryClick = (id, slug, name) => {

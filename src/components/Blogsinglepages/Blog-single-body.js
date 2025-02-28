@@ -15,7 +15,18 @@ const Blog_single_body = ({ data }) => {
     const { blogs, loading } = useSelector(state => state.blogs)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const htmlContent = (value) => {
+        if (value && value.length > 0) {
+            return `<div>${value.toString()} </div>`
+        }
+        return ''
 
+    }
+    const tc = document.getElementById("textContent")
+    if (tc && data && data.description) {
+        console.log(data.description)
+        tc.innerHTML = htmlContent(data.description)
+    }
     const oncategoryClick = (id, slug, name) => {
         localStorage.setItem("categoryName", name)
         localStorage.setItem("catId", id)
@@ -62,8 +73,8 @@ const Blog_single_body = ({ data }) => {
                                         </Link>
                                     </div>
                                     <div className="post-body pb-0">
-                                        <div className="post-desc">
-                                            <p>{data.description}</p>
+                                        <div className="post-desc" id="textContent">
+                                            {/* <p>{data.description}</p> */}
                                         </div>
                                     </div>
                                 </div>

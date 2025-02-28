@@ -72,6 +72,7 @@ const Blog_single_body = ({ data }) => {
                                         </Link>
                                     </div>
                                     <div className="post-body pb-0">
+                                        <h1>{data.title || ''}</h1>
                                         <div className="post-desc" id="textContent">
                                             {/* <p>{data.description}</p> */}
                                         </div>

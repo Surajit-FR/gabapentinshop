@@ -961,6 +961,20 @@ a{
   transition: all 400ms ease-in-out;
   min-height: 288px;
 }
+.post-desc ul{
+  padding: 0;
+  margin: 8px 0 4px 27px;
+}
+.post-desc ul li{
+  color: #003d58;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 0;
+  padding: 0 0 5px 0;
+  list-style: circle;
+}
+
 .post-item:hover .post-body{
   background: #f4572e;
 }

@@ -2036,6 +2036,10 @@ a{
   background:#fff;
   color:#2e3192;
 }
+.harder_top_1 .dropdown-item.active:hover{
+  color:#fff;
+  background:#2e3192;
+}
 .online_order{
   padding:70px 0;
 }

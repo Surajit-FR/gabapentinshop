@@ -3,6 +3,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllBlogs } from '../../store/thunks/blogThunk'
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 const Blog = () => {
@@ -16,6 +20,33 @@ const Blog = () => {
     useEffect(() => {
         dispatch(getAllBlogs())
     }, [dispatch])
+
+    // const blog_home_slider = {
+    //     dots: false,
+    //     infinite: true,
+    //     speed: 500,
+    //     slidesToShow: 3,
+    //     slidesToScroll: 3,
+    //     autoplay: false,
+    //     autoplaySpeed: 3000,
+    //     responsive: [
+    //       {
+    //         breakpoint: 767,
+    //         settings: {
+    //           slidesToShow:1,
+    //         },
+    //       },
+    //       {
+    //         breakpoint: 1024,
+    //         settings: {
+    //           slidesToShow: 2,
+    //         },
+    //       },
+    //     ],
+    //   }
+    
+
+
     return (
         <div>
             <div className='blog-layout1'>
@@ -28,10 +59,15 @@ const Blog = () => {
                             </div>
                         </div>
                     </div>
+
+                    
+
+
                     <div className="row">
-                        {blogs && blogs.length > 0 && blogs.map(item => (
+                    {/* <Slider {...blog_home_slider}> */}
+                        {blogs && blogs.length > 0 && blogs.slice(0,3).map(item => (
                             <div className="col-sm-12 col-md-6 col-lg-4" key={item.id}>
-                                <div className="post-item">
+                                <div className="post-item blog_margin">
                                     <div className="post-img">
                                         <div className="post-meta-date">
                                             <span className="day">{new Date(item.date).getDate()}</span>
@@ -45,11 +81,10 @@ const Blog = () => {
                                             </Link>
                                         </div>
                                     </div>
-                                    <div className="post-body">
+                                    <div className="post-body beg">
                                         <div className="post-meta d-flex align-items-center">
                                             <div className="post-meta-cat"
                                                 onClick={() => onClickBlog(item.id, item.slug)}
-
                                             >
                                                 <Link
                                                 // to={`/blog/${item.id}`}
@@ -63,14 +98,7 @@ const Blog = () => {
                                             <Link
                                             //  to={`/blog/${item.id}`}
                                             >
-                                                <p
-                                                    style={{
-                                                        overflow: "hidden",
-                                                        display: "-webkit-box",
-                                                        WebkitLineClamp: 3,
-                                                        lineClamp: 2,
-                                                        WebkitBoxOrient: "vertical",
-                                                    }}
+                                                <p className='text_overhide'
                                                 >
                                                     {item.description}
                                                 </p>
@@ -90,7 +118,7 @@ const Blog = () => {
                                 </div>
                             </div>
                         ))}
-
+                    {/* </Slider> */}
                     </div>
                     <div className="row">
                         <div className="col-12 text-center">

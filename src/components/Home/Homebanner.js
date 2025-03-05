@@ -11,6 +11,7 @@ const Homebanner = ({ data }) => {
     localStorage.setItem("categoryName", "Shop")
     navigate("/shop")
   }
+  
   const homeslider = {
     dots: true,
     infinite: true,

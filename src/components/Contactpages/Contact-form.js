@@ -1,6 +1,8 @@
+import axios from 'axios'
 import React from 'react'
 import { useState, useEffect, useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Preloader from '../Preloader/Preloader'
 
 const Contact_form = ({ data }) => {
 
@@ -59,7 +61,7 @@ const Contact_form = ({ data }) => {
 
     const finishSubmit = useCallback(() => {
         setLoading(true)
-        navigate('/thank-you')
+        // navigate('/thank-you')
         // emailjs
         //     .sendForm(SERVICE_ID, YOUR_TEMPLATE_ID, form.current, {
         //         publicKey: YOUR_PUBLIC_KEY,
@@ -80,7 +82,29 @@ const Contact_form = ({ data }) => {
         //         },
         //     );
         // setSubmitting(false)
-    }, [])
+        axios({
+            method: 'POST',
+            url: 'http://localhost:5000/express_backend',
+            data: {
+                name: formDta.name,
+                email: formDta.email,
+                phone: formDta.phone,
+                message: formDta.message,
+                // messageHtml: `<div>this is for testing</div>`
+            }
+        }).then((response) => {
+            if (response.data.msg === 'success') {
+                setLoading(false)
+                navigate('/thank-you')
+
+                //   this.resetForm()
+            } else if (response.data.msg === 'fail') {
+                setLoading(false)
+
+                alert('Oops, something went wrong. Try again')
+            }
+        })
+    }, [formDta, navigate])
     useEffect(() => {
         if (Object.keys(errors).length === 0 && submitting) {
             finishSubmit();
@@ -89,8 +113,10 @@ const Contact_form = ({ data }) => {
     return (
         <div>
             <div className="contact_layout1">
+          
+                {loading? <Preloader/> :(
                 <div className="container">
-                    <div className="row">
+                  <div className="row">
                         <div className="col-sm-12 col-md-12 col-lg-7">
                             <div className="heading-layout2 mb-50">
                                 {data && data.length > 0 && data.map((item, index) => (
@@ -163,6 +189,8 @@ const Contact_form = ({ data }) => {
                         </div>
                     </div>
                 </div>
+            )}
+                  
             </div>
         </div>
     )

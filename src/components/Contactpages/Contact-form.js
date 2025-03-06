@@ -3,10 +3,14 @@ import React from 'react'
 import { useState, useEffect, useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import CustomLoader from '../shared/CustomLoader'
+import { useDispatch, useSelector } from 'react-redux'
+import { mailToContact } from '../../store/thunks/mailThunk'
 
 const Contact_form = ({ data }) => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { message } = useSelector(state => state.mail)
     const [formDta, setFormData] = useState({
     })
     const [errors, setErrors] = useState({});
@@ -61,26 +65,47 @@ const Contact_form = ({ data }) => {
 
     const finishSubmit = useCallback(() => {
         setLoading(true)
-        axios({
-            method: 'POST',
-            url: 'http://localhost:5000/express_backend',
-            data: {
+        // axios({
+        //     method: 'POST',
+        //     url: 'http://localhost:5000/express_backend',
+        //     data: {
+        //         name: formDta.name,
+        //         email: formDta.email,
+        //         phone: formDta.phone,
+        //         message: formDta.message,
+        //         // messageHtml: `<div>this is for testing</div>`
+        //     }
+        // }).then((response) => {
+        //     if (response.data.msg === 'success') {
+        //         setLoading(false)
+        //         navigate('/thank-you')
+        //     } else if (response.data.msg === 'fail') {
+        //         setLoading(false)
+        //         alert('Oops, something went wrong. Try again')
+        //     }
+        // })
+        dispatch(mailToContact(
+
+            {
                 name: formDta.name,
                 email: formDta.email,
                 phone: formDta.phone,
                 message: formDta.message,
-                // messageHtml: `<div>this is for testing</div>`
             }
-        }).then((response) => {
-            if (response.data.msg === 'success') {
-                setLoading(false)
-                navigate('/thank-you')
-            } else if (response.data.msg === 'fail') {
-                setLoading(false)
-                alert('Oops, something went wrong. Try again')
-            }
-        })
-    }, [formDta, navigate])
+        ))
+    }, [formDta, dispatch])
+
+    useEffect(() => {
+        if (message === 'success') {
+            setLoading(false)
+            navigate('/thank-you')
+        }
+        else if (message === 'fail') {
+            setLoading(false)
+            alert('Oops, something went wrong. Try again')
+        }
+    }, [message, navigate])
+
     useEffect(() => {
         if (Object.keys(errors).length === 0 && submitting) {
             finishSubmit();
@@ -89,84 +114,84 @@ const Contact_form = ({ data }) => {
     return (
         <div>
             <div className="contact_layout1">
-          
-                {loading? <CustomLoader/> :(
-                <div className="container">
-                  <div className="row">
-                        <div className="col-sm-12 col-md-12 col-lg-7">
-                            <div className="heading-layout2 mb-50">
-                                {data && data.length > 0 && data.map((item, index) => (
 
-                                    <h3 className="mb-3" key={index}>{item.get_in_touch_caption}</h3>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-sm-12 col-md-12 col-lg-4">
-                            <div className="text-block" id="textContent">
-                            </div>
-                            <Link to="/shop" className="shop_btn">
-                                <span>Shop Now</span>
-                                <i className="icon-arrow-right"></i>
-                            </Link>
-                        </div>
-                        <div className="col-sm-12 col-md-12 col-lg-8">
-                            <form className="contact-panel-form" id="contactForm" onSubmit={onSubmit}>
-                                <div className="row">
-                                    <div className="col-sm-12 col-md-4 col-lg-4">
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" placeholder="Name" name="name" onChange={onChangeValue} />
-                                        </div>
-                                        {errors.name ? (
-                                            <p className="error">
-                                                {errors.name}
-                                            </p>
-                                        ) : null}
-                                    </div>
-                                    <div className="col-sm-12 col-md-4 col-lg-4">
-                                        <div className="form-group">
-                                            <input type="email" className="form-control" placeholder="Email" name="email" onChange={onChangeValue} />
-                                        </div>
-                                        {errors.email ? (
-                                            <p className="error">
-                                                {errors.email}
-                                            </p>
-                                        ) : null}
-                                    </div>
-                                    <div className="col-sm-12 col-md-4 col-lg-4">
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" placeholder="Phone" name="phone" onChange={onChangeValue} />
-                                        </div>
-                                        {errors.phone ? (
-                                            <p className="error">
-                                                {errors.phone}
-                                            </p>
-                                        ) : null}
-                                    </div>
-                                    <div className="col-12">
-                                        <div className="form-group">
-                                            <textarea className="form-control height_1" placeholder="Additional Details"
-                                                name="message"
-                                                onChange={onChangeValue}
-                                            ></textarea>
-                                        </div>
-                                        {errors.message ? (
-                                            <p className="error">
-                                                {errors.message}
-                                            </p>
-                                        ) : null}
-                                        <button type="submit" className="request_btn mt-10">
-                                            <span>Submit Request</span> <i className="icon-arrow-right"></i>
-                                        </button>
-                                    </div>
+                {loading ? <CustomLoader /> : (
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-sm-12 col-md-12 col-lg-7">
+                                <div className="heading-layout2 mb-50">
+                                    {data && data.length > 0 && data.map((item, index) => (
+
+                                        <h3 className="mb-3" key={index}>{item.get_in_touch_caption}</h3>
+                                    ))}
                                 </div>
-                            </form>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-12 col-md-12 col-lg-4">
+                                <div className="text-block" id="textContent">
+                                </div>
+                                <Link to="/shop" className="shop_btn">
+                                    <span>Shop Now</span>
+                                    <i className="icon-arrow-right"></i>
+                                </Link>
+                            </div>
+                            <div className="col-sm-12 col-md-12 col-lg-8">
+                                <form className="contact-panel-form" id="contactForm" onSubmit={onSubmit}>
+                                    <div className="row">
+                                        <div className="col-sm-12 col-md-4 col-lg-4">
+                                            <div className="form-group">
+                                                <input type="text" className="form-control" placeholder="Name" name="name" onChange={onChangeValue} />
+                                            </div>
+                                            {errors.name ? (
+                                                <p className="error">
+                                                    {errors.name}
+                                                </p>
+                                            ) : null}
+                                        </div>
+                                        <div className="col-sm-12 col-md-4 col-lg-4">
+                                            <div className="form-group">
+                                                <input type="email" className="form-control" placeholder="Email" name="email" onChange={onChangeValue} />
+                                            </div>
+                                            {errors.email ? (
+                                                <p className="error">
+                                                    {errors.email}
+                                                </p>
+                                            ) : null}
+                                        </div>
+                                        <div className="col-sm-12 col-md-4 col-lg-4">
+                                            <div className="form-group">
+                                                <input type="text" className="form-control" placeholder="Phone" name="phone" onChange={onChangeValue} />
+                                            </div>
+                                            {errors.phone ? (
+                                                <p className="error">
+                                                    {errors.phone}
+                                                </p>
+                                            ) : null}
+                                        </div>
+                                        <div className="col-12">
+                                            <div className="form-group">
+                                                <textarea className="form-control height_1" placeholder="Additional Details"
+                                                    name="message"
+                                                    onChange={onChangeValue}
+                                                ></textarea>
+                                            </div>
+                                            {errors.message ? (
+                                                <p className="error">
+                                                    {errors.message}
+                                                </p>
+                                            ) : null}
+                                            <button type="submit" className="request_btn mt-10">
+                                                <span>Submit Request</span> <i className="icon-arrow-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
-                  
+                )}
+
             </div>
         </div>
     )

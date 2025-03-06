@@ -5,6 +5,7 @@ import blogReducer from './reducers/blogSlice'
 import homeReducer from './reducers/homeSlice'
 import faqReducer from './reducers/faqSlice'
 import contactReducer from './reducers/contactSlice'
+import mailReducer from './reducers/mailSlice'
 
 export const store = configureStore({
     reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     home: homeReducer,
     faq:faqReducer,
     contact: contactReducer,
+    mail:mailReducer,
     },
   })

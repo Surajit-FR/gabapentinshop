@@ -1,8 +1,9 @@
 import axios from "axios";
-import { REACT_APP_BASE_URL } from "./apiConfig";
+import { REACT_APP_BASE_URL, REACT_APP_MAIL_URL } from "./apiConfig";
 
 // Create axios instance
 export const API = axios.create({ baseURL: REACT_APP_BASE_URL });
+export const MAIL_API = axios.create({ baseURL: REACT_APP_MAIL_URL });
 
 
 export const GETCATEGORYLIST = () => API.get("/ws-categorylist.php");
@@ -92,3 +93,5 @@ export const GETALLCONTACTUSDATA = () => {
 export const GETALLSETTINGSDATA = () => {
     return API.get(`ws-setting.php`);
 };
+
+export const MAILTOCONTACT = (data) => MAIL_API.post("/express_backend", data);

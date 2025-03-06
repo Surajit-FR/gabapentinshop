@@ -1,0 +1,35 @@
+import { createSlice } from '@reduxjs/toolkit'
+import { mailToContact } from '../thunks/mailThunk'
+
+const initialState = {
+    loading: 'idle',
+    message: '',
+}
+
+// Then, handle actions in your reducers:
+const mailReducer = createSlice({
+    name: 'mail',
+    initialState,
+    reducers: {
+        // standard reducer logic, with auto-generated action types per reducer
+    },
+    extraReducers: (builder) => {
+        // Add reducers for additional action types here, and handle loading state as needed
+        builder.addCase(mailToContact.pending, (state) => {
+            // Add user to the state array
+            state.message = 'pending'
+        })
+        builder.addCase(mailToContact.fulfilled, (state, action) => {
+            // Add user to the state array
+            state.message = action.payload
+        })
+        builder.addCase(mailToContact.rejected, (state, action) => {
+            // Add user to the state array
+            state.message = action.payload
+        })
+
+    },
+})
+
+
+export default mailReducer.reducer;

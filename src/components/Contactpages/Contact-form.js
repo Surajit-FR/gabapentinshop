@@ -94,8 +94,7 @@ const Contact_form = ({ data }) => {
                 message: formDta.message,
             }
         ))
-        setLoading(false)
-        // navigate('/thank-you')
+
     }, [formDta, dispatch])
 
     useEffect(() => {

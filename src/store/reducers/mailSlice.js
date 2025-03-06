@@ -12,6 +12,9 @@ const mailReducer = createSlice({
     initialState,
     reducers: {
         // standard reducer logic, with auto-generated action types per reducer
+        cleanup: ()=>{
+                    return initialState
+                }
     },
     extraReducers: (builder) => {
         // Add reducers for additional action types here, and handle loading state as needed
@@ -31,5 +34,8 @@ const mailReducer = createSlice({
     },
 })
 
+export const {
+    cleanup,
+} = mailReducer.actions
 
 export default mailReducer.reducer;

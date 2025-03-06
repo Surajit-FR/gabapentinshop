@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import CustomLoader from '../shared/CustomLoader'
 import { useDispatch, useSelector } from 'react-redux'
 import { mailToContact } from '../../store/thunks/mailThunk'
+import { cleanup } from '../../store/reducers/mailSlice'
 
 const Contact_form = ({ data }) => {
 
@@ -111,6 +112,11 @@ const Contact_form = ({ data }) => {
             finishSubmit();
         }
     }, [errors, submitting, finishSubmit]);
+    useEffect(()=>{
+return()=>{
+    dispatch(cleanup())
+}
+    },[dispatch])
     return (
         <div>
             <div className="contact_layout1">

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { mailToContact } from '../thunks/mailThunk'
+import { mailOrder, mailToContact } from '../thunks/mailThunk'
 
 const initialState = {
     loading: 'idle',
@@ -28,7 +28,19 @@ const mailReducer = createSlice({
         })
         builder.addCase(mailToContact.rejected, (state, action) => {
             // Add user to the state array
+            state.message = action.payload || 'fail'
+        })
+        builder.addCase(mailOrder.pending, (state) => {
+            // Add user to the state array
+            state.message = 'pending'
+        })
+        builder.addCase(mailOrder.fulfilled, (state, action) => {
+            // Add user to the state array
             state.message = action.payload
+        })
+        builder.addCase(mailOrder.rejected, (state, action) => {
+            // Add user to the state array
+            state.message = action.payload || "fail"
         })
 
     },

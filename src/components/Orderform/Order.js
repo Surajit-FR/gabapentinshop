@@ -3,13 +3,16 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import usePageMeta from "../Seo/Seo";
 import { getAllProducts } from '../../store/thunks/productThunk';
 import { useDispatch, useSelector } from 'react-redux';
-import emailjs from '@emailjs/browser';
-import Preloader from "../Preloader/Preloader";
+// import emailjs from '@emailjs/browser';
+// import Preloader from "../Preloader/Preloader";
 import { useNavigate } from "react-router-dom";
+import { mailOrder } from "../../store/thunks/mailThunk";
+import { cleanup } from "../../store/reducers/mailSlice";
+import CustomLoader from "../shared/CustomLoader";
 
-const SERVICE_ID = "service_jffft35"
-const YOUR_TEMPLATE_ID = "template_2ynn5ap"
-const YOUR_PUBLIC_KEY = "mon7ZTBXHdv7oXhEK"
+// const SERVICE_ID = "service_jffft35"
+// const YOUR_TEMPLATE_ID = "template_2ynn5ap"
+// const YOUR_PUBLIC_KEY = "mon7ZTBXHdv7oXhEK"
 
 const Order = () => {
     usePageMeta({
@@ -18,6 +21,7 @@ const Order = () => {
         keywords: 'Gabapentinshop Order',
     });
     const { productsPercategory } = useSelector(state => state.products)
+    const {message} =useSelector(state=>state.mail)
     const navigate = useNavigate()
     const tempProductData = localStorage.getItem("productDate")
     const form = useRef();
@@ -96,31 +100,41 @@ const Order = () => {
     }
     const finishSubmit = useCallback(() => {
         setLoading(true)
-        emailjs
-            .sendForm(SERVICE_ID, YOUR_TEMPLATE_ID, form.current, {
-                publicKey: YOUR_PUBLIC_KEY,
-            })
-            .then(
-                () => {
-                    console.log('SUCCESS!');
-                    setSubmitting(false)
-                    setLoading(false)
-                    navigate('/thank-you')
+        dispatch(mailOrder(formDta))
+        // emailjs
+        //     .sendForm(SERVICE_ID, YOUR_TEMPLATE_ID, form.current, {
+        //         publicKey: YOUR_PUBLIC_KEY,
+        //     })
+        //     .then(
+        //         () => {
+        //             console.log('SUCCESS!');
+        //             setSubmitting(false)
+        //             setLoading(false)
+        //             navigate('/thank-you')
 
-                    // alert("Form Submitted Successfully")
-                },
-                (error) => {
-                    console.log('FAILED...', error.text);
-                    setSubmitting(false)
-                    setLoading(false)
-                    alert("Something Went Wrong...Please try Again Later")
+        //             // alert("Form Submitted Successfully")
+        //         },
+        //         (error) => {
+        //             console.log('FAILED...', error.text);
+        //             setSubmitting(false)
+        //             setLoading(false)
+        //             alert("Something Went Wrong...Please try Again Later")
 
-                },
-            );
+        //         },
+        //     );
         // setSubmitting(false)
-        // console.log(formDta)
-    }, [navigate, formDta])
-
+    }, [navigate, formDta, dispatch])
+console.log({message})
+    useEffect(() => {
+        if (message === 'success') {
+            setLoading(false)
+            navigate('/thank-you')
+        }
+        else if (message === 'fail') {
+            setLoading(false)
+            alert('Oops, something went wrong. Try again')
+        }
+    }, [message, navigate])
     useEffect(() => {
         if (Object.keys(errors).length === 0 && submitting) {
             finishSubmit();
@@ -150,13 +164,18 @@ const Order = () => {
             localStorage.removeItem("productDate")
         }
     }, [])
+    useEffect(()=>{
+        return()=>{
+            dispatch(cleanup())
+        }
+    },[dispatch])
     return (
         <div>
 
             <div className='online_order'>
                 <div className='container'>
                     {loading ? (
-                        <Preloader />
+                        <CustomLoader />
                     ) :
                         <form className='order_box_123'
                             ref={form}

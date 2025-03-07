@@ -95,3 +95,4 @@ export const GETALLSETTINGSDATA = () => {
 };
 
 export const MAILTOCONTACT = (data) => MAIL_API.post("/express_backend", data);
+export const MAILORDER = (data) => MAIL_API.post("/order_mail", data);

@@ -21,7 +21,7 @@ const Privacy_policy = () => {
   },[dispatch])
 
   return (
-    <div style={{background:'red'}}>
+    <div>
       <Inner_common_banner title={"Privacy policy"} subtitle={"Privacy policy"} background={privacyimg} />
       <Privacy_body data={privacyPolicyData}/>
     </div>

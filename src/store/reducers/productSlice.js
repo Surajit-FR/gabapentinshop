@@ -8,6 +8,7 @@ const initialState = {
     loading: 'idle',
     mapProductsData:[],
     productId: '',
+    meta_tags_all_products: '',
 }
 
 
@@ -56,7 +57,8 @@ const productReducer = createSlice({
         })
         builder.addCase(getAllProducts.fulfilled, (state, action) => {
             // Add product to the state obj
-            state.productsPercategory = action.payload
+            state.productsPercategory = action.payload.products
+            state.meta_tags_all_products= action.payload.meta_data
             state.loading= "idle"
         })
         builder.addCase(getAllProducts.rejected, (state, action) => {

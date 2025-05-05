@@ -14,14 +14,15 @@ import Preloader from '../Preloader/Preloader'
 
 const Home = () => {
 
-    usePageMeta({
-        title: 'Home',
-        description: 'Gabapentinshop Home',
-        keywords: 'Gabapentinshop Home',
-    });
-
+ 
     const dispatch = useDispatch()
     const { homeData } = useSelector(state => state.home)
+
+    usePageMeta({
+        title: homeData?.meta_data?.meta_title,
+        description: homeData?.meta_data?.meta_description,
+        keywords: homeData?.meta_data?.meta_keyword,
+    });
 
     useEffect(() => {
         dispatch(getHomePageData())

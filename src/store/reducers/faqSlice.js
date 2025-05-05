@@ -3,6 +3,7 @@ import { getFaqData } from '../thunks/faqThunk'
 
 const initialState = {
     faqData: [],
+    meta_tags_faq_page: {},
     loading: 'idle',
 }
 
@@ -17,7 +18,8 @@ const faqReducer = createSlice({
         // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(getFaqData.fulfilled, (state, action) => {
             // Add user to the state array
-            state.faqData = action.payload
+            state.faqData = action.payload.faq_data
+            state.meta_tags_faq_page= action.payload.meta_data
         })
 
     },

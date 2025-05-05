@@ -7,20 +7,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPrivacyPolicyData } from '../../store/thunks/homeThunk'
 
 const Privacy_policy = () => {
-  usePageMeta({
-    title: 'Privacy Policy',
-    description: 'Gabapentinshop Privacy Policy',
-    keywords: 'Gabapentinshop Privacy Policy',
-  });
   const dispatch = useDispatch()
   const { privacyPolicyData } = useSelector(state => state.home)
-  
+
+  usePageMeta({
+    title: privacyPolicyData?.meta_data?.meta_title,
+    description: privacyPolicyData?.meta_data?.meta_description,
+    keywords: privacyPolicyData?.meta_data?.meta_keyword,
+});
+
   useEffect(()=>{
     dispatch(getPrivacyPolicyData())
   },[dispatch])
 
   return (
-    <div>
+    <div style={{background:'red'}}>
       <Inner_common_banner title={"Privacy policy"} subtitle={"Privacy policy"} background={privacyimg} />
       <Privacy_body data={privacyPolicyData}/>
     </div>

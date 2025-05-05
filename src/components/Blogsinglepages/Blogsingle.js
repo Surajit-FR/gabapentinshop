@@ -17,9 +17,9 @@ const Blogsingle = () => {
   },[blogId,dispatch])
 
   usePageMeta({
-      title:'Blog',
-      description:'Gabapentinshop Blog Single',
-      keywords:'Gabapentinshop Blog Single',
+      title:singleBlog?.meta_title,
+      description:singleBlog?.meta_description,
+      keywords:singleBlog?.meta_keyword,
   });
 
   return (

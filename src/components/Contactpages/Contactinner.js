@@ -9,13 +9,14 @@ import { getContactData } from '../../store/thunks/contactUsThunk'
 
 
 const Contactinner = () => {
-  usePageMeta({
-      title:'Contact Us',
-      description:'Gabapentinshop Contact Us',
-      keywords:'Gabapentinshop Contact Us',
-  });
+
 const dispatch= useDispatch()
-const {contactUsData} = useSelector(state=> state.contact)
+const {contactUsData, meta_tags_contct_us} = useSelector(state=> state.contact)
+usePageMeta({
+  title:meta_tags_contct_us?.meta_title,
+  description:meta_tags_contct_us?.meta_description,
+  keywords:meta_tags_contct_us?.meta_keyword,
+});
 useEffect(()=>{
   dispatch(getContactData())
 },[dispatch])

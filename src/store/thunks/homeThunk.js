@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { GETALLHOMEDATA, GETALLPRIVACYPOLICY, GETALLTERMSDATA, GETDELIVERYINFODATA, GETFOOTERDATA, GETRETURNSPOLICY } from '../../api/api'
+import { GETABOUTUSDATA, GETALLHOMEDATA, GETALLPRIVACYPOLICY, GETALLTERMSDATA, GETDELIVERYINFODATA, GETFOOTERDATA, GETRETURNSPOLICY } from '../../api/api'
 
 
 export const getHomePageData = createAsyncThunk(
@@ -41,6 +41,13 @@ export const getReturnPolicydata = createAsyncThunk(
     'home/getReturnPolicy',
     async () => {
       const response = await GETRETURNSPOLICY()
+      return response.data
+    },
+)
+export const getAboutusData = createAsyncThunk(
+    'home/getAboutUs',
+    async () => {
+      const response = await GETABOUTUSDATA()
       return response.data
     },
 )

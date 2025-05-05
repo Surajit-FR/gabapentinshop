@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Inner_common_banner from '../Common/Inner-common-banner'
 import Shop_body from './Shop-body'
 import shopinnerimg from '../../img/shop/inner1.jpg'
@@ -7,31 +7,60 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts, getProductsPerCategory } from '../../store/thunks/productThunk'
 import { useParams } from 'react-router-dom'
 import CustomLoader from '../shared/CustomLoader'
+import { getCategoryList } from '../../store/thunks/categoryThunk'
 
 const Shopinner = () => {
-  usePageMeta({
-    title: 'Shop',
-    description: 'Gabapentinshop Shop',
-    keywords: 'Gabapentinshop Shop',
-  });
-  const { productsPercategory, loading } = useSelector(state => state.products)
+
+  const { productsPercategory, loading, meta_tags_all_products } = useSelector(state => state.products)
+  const { categories } = useSelector(state => state.categories)
   const { catParams } = useParams()
   const catId = localStorage.getItem("catId")
   const categoryName = localStorage.getItem("categoryName")
   const dispatch = useDispatch()
+  const [metaData, setMetadata] = useState({
+    title: '',
+    description: '',
+    keywords: '',
 
+  })
+  console.log({ productsPercategory })
   useEffect(() => {
     if (catId
       && catId !== "all"
     ) {
+      const catProducts = categories.filter(cat => cat.term_id === Number(catId))
+      setMetadata({
+        title: catProducts[0]?.meta_title,
+        description: catProducts[0]?.meta_description,
+        keywords: catProducts[0]?.meta_keyword,
+      })
       dispatch(getProductsPerCategory(catId))
     }
-  }, [dispatch, catId, catParams])
+  }, [dispatch, catId, catParams, categories])
   useEffect(() => {
     if (catId === "all") {
       dispatch(getAllProducts())
     }
   }, [dispatch, catId])
+  useEffect(() => {
+    dispatch(getCategoryList())
+  }, [dispatch])
+  
+  useEffect(() => {
+    if (meta_tags_all_products) {
+      setMetadata({
+        title: meta_tags_all_products?.meta_title,
+        description: meta_tags_all_products?.meta_description,
+        keywords: meta_tags_all_products?.meta_keyword,
+      })
+    }
+  }, [meta_tags_all_products])
+
+  usePageMeta({
+    title: metaData?.title,
+    description: metaData?.description,
+    keywords: metaData?.keywords,
+  });
 
   return (
     <div>

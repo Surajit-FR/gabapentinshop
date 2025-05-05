@@ -3,6 +3,7 @@ import { getContactData } from '../thunks/contactUsThunk'
 
 const initialState = {
     contactUsData: [],
+    meta_tags_contct_us:{},
     loading: 'idle',
 }
 
@@ -17,7 +18,8 @@ const contactReducer = createSlice({
         // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(getContactData.fulfilled, (state, action) => {
             // Add user to the state array
-            state.contactUsData = action.payload
+            state.contactUsData = action.payload.getintouch_data
+            state.meta_tags_contct_us= action.payload.meta_data
         })
 
     },

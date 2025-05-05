@@ -7,7 +7,7 @@ export const getAllBlogs = createAsyncThunk(
     'product/getAllBlogs',
     async (categoryId) => {
       const response = await GETALLBLOGS(categoryId)
-      return response.data.result.blog
+      return response.data.result
     },
 )
 

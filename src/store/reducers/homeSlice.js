@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getHomePageData, getFooterData, getDeliveryInfoData, getPrivacyPolicyData, getTermsAndConditionsData, getReturnPolicydata } from '../thunks/homeThunk'
+import { getHomePageData, getFooterData, getDeliveryInfoData, getPrivacyPolicyData, getTermsAndConditionsData, getReturnPolicydata, getAboutusData } from '../thunks/homeThunk'
 
 const initialState = {
     homeData:{},
@@ -9,6 +9,7 @@ const initialState = {
     privacyPolicyData: {},
     termsAndConditions: {},
     returnPolicydata:{},
+    aboutUsData:{},
 }
 // Then, handle actions in your reducers:
 const homeReducer = createSlice({
@@ -42,7 +43,10 @@ const homeReducer = createSlice({
         builder.addCase(getReturnPolicydata.fulfilled, (state, action) => {
             state.returnPolicydata = action.payload
         })
-
+        // Add reducers for additional action types here, and handle loading state as needed
+        builder.addCase(getAboutusData.fulfilled, (state, action) => {
+            state.aboutUsData = action.payload
+        })
     },
 })
 

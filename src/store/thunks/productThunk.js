@@ -25,7 +25,7 @@ export const getAllProducts = createAsyncThunk(
     'product/getAllProducts',
     async () => {
       const response = await GETALLPRODUCTS()
-      return response.data.result.products
+      return response.data.result
     },
 )
 // First, create the thunk

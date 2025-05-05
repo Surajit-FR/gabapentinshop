@@ -7,6 +7,6 @@ export const getContactData = createAsyncThunk(
     'contact/getContactData',
     async () => {
       const response = await GETALLCONTACTUSDATA()
-      return response.data.getintouch_data
+      return response.data
     },
 )

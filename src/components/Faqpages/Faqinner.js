@@ -9,11 +9,11 @@ import { getFaqData } from '../../store/thunks/faqThunk'
 
 const Faqinner = () => {
   const dispatch = useDispatch()
-  const { faqData } = useSelector(state => state.faq)
+  const { faqData , meta_tags_faq_page} = useSelector(state => state.faq)
   usePageMeta({
-    title: 'Faqs',
-    description: 'Gabapentinshop Faqs',
-    keywords: 'Gabapentinshop Faqs',
+    title: meta_tags_faq_page?.meta_title,
+    description: meta_tags_faq_page?.meta_description,
+    keywords: meta_tags_faq_page?.meta_keyword,
   });
   useEffect(() => {
     dispatch(getFaqData())

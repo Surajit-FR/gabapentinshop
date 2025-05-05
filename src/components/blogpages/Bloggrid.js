@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { getAllBlogs } from '../../store/thunks/blogThunk'
 import CustomLoader from '../shared/CustomLoader'
+import usePageMeta from '../Seo/Seo'
 
 
 
@@ -10,7 +11,7 @@ const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "O
 const Bloggrid = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { blogs, loading } = useSelector(state => state.blogs)
+    const { blogs, loading, meta_tags_all_blogs } = useSelector(state => state.blogs)
     const onClickBlog = (id, slug) => {
         localStorage.setItem("blogId", id)
         navigate(`/blog/${slug}`)
@@ -18,7 +19,11 @@ const Bloggrid = () => {
     useEffect(() => {
         dispatch(getAllBlogs())
     }, [dispatch])
-
+    usePageMeta({
+        title: meta_tags_all_blogs?.meta_title,
+        description: meta_tags_all_blogs?.meta_description,
+        keywords: meta_tags_all_blogs?.meta_keyword,
+      });
     return (
         <>
             {loading === "All blogs pending" ?

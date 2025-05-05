@@ -5,6 +5,7 @@ const initialState = {
     blogs: [],
     singleBlog:{},
     loading: 'idle',
+    meta_tags_all_blogs: {}
 }
 
 
@@ -24,7 +25,8 @@ const blogReducer = createSlice({
         // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(getAllBlogs.fulfilled, (state, action) => {
             // Add user to the state array
-            state.blogs = action.payload
+            state.blogs = action.payload.blog
+            state.meta_tags_all_blogs= action.payload.meta_data
             state.loading = "idle"
         })
         // Add reducers for additional action types here, and handle loading state as needed

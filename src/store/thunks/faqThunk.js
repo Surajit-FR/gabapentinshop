@@ -7,6 +7,6 @@ export const getFaqData = createAsyncThunk(
     'product/getFaqdata',
     async () => {
       const response = await GETALLFAQDATA()
-      return response.data.faq_data
+      return response.data
     },
 )

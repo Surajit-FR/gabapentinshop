@@ -2,9 +2,9 @@ import { useEffect } from "react";
 
 
 const usePageMeta = ({title, description, keywords}) =>{
-  const defaultTitle = "app-name";
-  const defaultDesc = "meta description";
-  const defaultKey = "meta defaultKey";
+  const defaultTitle = "Buy Gabapentin Online Overnight Delivery | Order Fioricet Medicine USA";
+  const defaultDesc = "Gabapentin Shop is a reputed store in USA where order fioricet 180 tabs, gabapentin medicine. Buy gabapentin online for epilepsy treatment. For purchase click on gabapentinshop.com";
+  const defaultKey = "Buy Gabapentin Online, Order Fioricet Online, Gabapentin Online 180 Tabs";
   
 
   useEffect(() => {

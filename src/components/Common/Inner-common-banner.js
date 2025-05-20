@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import seoContent from "../Seo/content.json"
 
 
-const Inner_banner = ({ title, subtitle, background,}) => {
+const Inner_banner = ({ title, subtitle, background, }) => {
   const bannerStyle = {
-    backgroundImage:`url(${background})`, 
+    backgroundImage: `url(${background})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundAttachment: 'fixed', 
+    backgroundAttachment: 'fixed',
   };
 
   return (
@@ -15,15 +16,24 @@ const Inner_banner = ({ title, subtitle, background,}) => {
       <div className='a_top'>
         <div className='container'>
           <h1>{title}</h1>
+          {seoContent[title] ?
+            <ul className='addres_text mb-3'>
+              <li>{seoContent[title]}</li>
+
+            </ul>
+            : null}
           <ul>
-              <li>
-                  <i className="fa-solid fa-house"></i>
-                  <Link to='/'>Home</Link>
-              </li>
-              <li><i className="fa-solid fa-chevron-right"></i></li>
-              <li>
+            <li>
+              <i className="fa-solid fa-house"></i>
+              <Link to='/'>Home</Link>
+            </li>
+            <li><i className="fa-solid fa-chevron-right"></i></li>
+            <li>
+              {subtitle}
+            </li>
+            {/* <li>
                 {subtitle}
-              </li>
+              </li> */}
           </ul>
         </div>
       </div>
@@ -32,12 +42,12 @@ const Inner_banner = ({ title, subtitle, background,}) => {
 };
 
 
-const Inner_common_banner = ({title, subtitle, background}) => {
+const Inner_common_banner = ({ title, subtitle, background }) => {
   return (
     <>
-        <div className='about_pages'>
-            <Inner_banner title={title} subtitle={subtitle} background={background}/>
-        </div>
+      <div className='about_pages'>
+        <Inner_banner title={title} subtitle={subtitle} background={background} />
+      </div>
     </>
   )
 }

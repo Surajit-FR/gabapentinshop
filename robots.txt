@@ -2,4 +2,4 @@ User-agent: *
 Disallow: 
 
 
-https://gabapentinshop.com/sitemap.xml
+sitemap:https://gabapentinshop.com/sitemap.xml

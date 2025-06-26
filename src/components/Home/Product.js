@@ -28,6 +28,7 @@ const Product = () => {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
+        swipeToSlide:true,
         responsive: [
             {
                 breakpoint: 768,

@@ -2321,9 +2321,32 @@ ol li{
   font-weight: 500;
 }
 
-
-
-
+.pagination-blog{
+  display: block;
+  text-align: center;
+  padding:0 0 0 0;
+  margin:10px 0 0 0;
+}
+.pagination-blog li{
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  line-height: 20px;
+}
+.pagination-blog li a{
+  background:#0b0d4f;
+  color: #fff !important;
+  padding: 10px 20px;
+  margin: 0;
+  border-right: 1px solid #ddd;
+}
+.pagination-blog li.active-blog-pagination a{
+  background:#f4572e;
+}
+.pagination-blog li.previous_button a{
+  background:#0b0d4f96;
+}
 
 
 @media screen and (max-width:1199px) {

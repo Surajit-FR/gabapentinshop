@@ -1,41 +1,10 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { getAllBlogs } from '../../store/thunks/blogThunk'
-import CustomLoader from '../shared/CustomLoader'
-import usePageMeta from '../Seo/Seo'
-import AllBlogContents from './AllBlogContents'
-import PaginatedItems from '../shared/PaginatedItems'
+import { Link } from 'react-router-dom'
 
-
-
-
-const Bloggrid = () => {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const { blogs, loading, meta_tags_all_blogs } = useSelector(state => state.blogs)
-    const onClickBlog = (id, slug) => {
-        localStorage.setItem("blogId", id)
-        navigate(`/blog/${slug}`)
-    }
-    useEffect(() => {
-        dispatch(getAllBlogs())
-    }, [dispatch])
-    usePageMeta({
-        title: meta_tags_all_blogs?.meta_title,
-        description: meta_tags_all_blogs?.meta_description,
-        keywords: meta_tags_all_blogs?.meta_keyword,
-      });
-    return (
-        <>
-            {loading === "All blogs pending" ?
-                <CustomLoader />
-
-                :
-                <div className='blog_grid blog-layout1'>
-                    <div className='container'>
-                        <div className='row'>
-                            {/* {blogs && blogs.length > 0 && blogs.map(blog => (
+const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+const AllBlogContents = ({blogs, onClickBlog}) => {
+  return (
+    <>
+      {blogs && blogs.length > 0 && blogs.map(blog => (
 
                                 <div className='col-md-6 col-lg-4'
                                     onClick={() => onClickBlog(blog.id, blog.slug)}
@@ -91,17 +60,9 @@ const Bloggrid = () => {
                                         </div>
                                     </div>
                                 </div>
-                            ))} */}
-                            {/* <AllBlogContents blogs={blogs} onClickBlog={onClickBlog}/> */}
-                            <PaginatedItems itemsPerPage={6} items={blogs} onClickBlog={onClickBlog}/>
-                        </div>
-                    </div>
-
-                </div>
-            }
-
-        </>
-    )
+                            ))}
+    </>
+  )
 }
 
-export default Bloggrid
+export default AllBlogContents

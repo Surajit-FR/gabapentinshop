@@ -35,7 +35,7 @@ const About = () => {
                     </div>
                     <div className="col-sm-12 col-md-10 col-lg-5 col-xl-5">
                         <div className="about-Text">
-                            <h2 className="wow animate__fadeInUp" data-wow-delay="0.3s" id="aboutContents"></h2>
+                            <h1 className="wow animate__fadeInUp" data-wow-delay="0.3s" id="aboutContents"></h1>
                             <p className="mb-30">
                                 {/* {data && data.length> 0 && data.map(item=> item.about_content)} */}
                             </p>

@@ -7,7 +7,11 @@ import { getAllProducts } from '../../store/thunks/productThunk';
 import { useDispatch, useSelector } from 'react-redux';
 import Preloader from '../Preloader/Preloader';
 
-
+const NextArrow = ()=>{
+    return (
+<div>Next</div>
+    );
+}
 const Product = () => {
     const { productsPercategory } = useSelector(state => state.products)
     const dispatch = useDispatch()
@@ -17,24 +21,24 @@ const Product = () => {
     }, [dispatch])
 
     const productslider = {
-        dots: true,
+        dots: false,
         infinite: true,
-        speed: 500,
+        speed: 3000,
         slidesToShow: 4,
-        slidesToScroll: 5,
-        autoplay: false,
+        slidesToScroll: 1,
+        autoplay: true,
         autoplaySpeed: 3000,
         responsive: [
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 1,
                 },
             },
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 1,
                 },
             },
             {

@@ -78,7 +78,7 @@ const SingleProduct = ({ data }) => {
 
                         <div className='col-md-12 col-lg-7'>
                             <div className='singel_text'>
-                                <h4>{data.title}</h4>
+                                <h1>{data.title}</h1>
                                 <h5 className='prices'>${data.regular_price}</h5>
                                 <p>{data.description}
                                 </p>

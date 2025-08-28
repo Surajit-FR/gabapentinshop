@@ -16,6 +16,7 @@ usePageMeta({
   title:meta_tags_contct_us?.meta_title,
   description:meta_tags_contct_us?.meta_description,
   keywords:meta_tags_contct_us?.meta_keyword,
+  canonic: 'https://gabapentinshop.com/contact-us',
 });
 useEffect(()=>{
   dispatch(getContactData())

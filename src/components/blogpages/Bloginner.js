@@ -6,7 +6,6 @@ import bloginnerimg from '../../img/blog/inner1.jpg'
 
 const Bloginner = () => {
 
-
   return (
 
           <>

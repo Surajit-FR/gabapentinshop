@@ -16,6 +16,7 @@ const Aboutinner = () => {
       title:aboutUsData?.meta_data?.meta_title,
       description:aboutUsData?.meta_data?.meta_description,
       keywords:aboutUsData?.meta_data?.meta_keyword,
+      canonic: 'https://www.gabapentinshop.com/about-us'
   });
 const dispatch = useDispatch()
 useEffect(()=>{

@@ -1,4 +1,4 @@
-import {  Routes, Route, 
+import {  Routes, Route, useParams, 
     // Link
  } from 'react-router-dom';
 import Home from '../components/Home/Home';
@@ -23,6 +23,7 @@ import Index from '../components/Index';
 // import Navbar from '../Navbar';
 
 const AllRoutes = () => {
+
   return (
     <>
     {/* <Router> */}

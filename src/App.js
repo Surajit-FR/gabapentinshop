@@ -13,7 +13,7 @@ function App() {
 
   const location =useLocation()
  usePageMeta({
-  canonic: `https://gabapentinshop.com/${location.pathname}`
+  canonic: `https://gabapentinshop.com${location.pathname}`
  })
 
   

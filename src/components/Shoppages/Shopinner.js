@@ -5,12 +5,12 @@ import shopinnerimg from '../../img/shop/inner1.jpg'
 import usePageMeta from '../Seo/Seo'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts, getProductsPerCategory } from '../../store/thunks/productThunk'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import CustomLoader from '../shared/CustomLoader'
 import { getCategoryList } from '../../store/thunks/categoryThunk'
 
 const Shopinner = () => {
-
+const location = useLocation()
   const { productsPercategory, loading, meta_tags_all_products } = useSelector(state => state.products)
   const { categories } = useSelector(state => state.categories)
   const { catParams } = useParams()
@@ -60,6 +60,7 @@ const Shopinner = () => {
     title: metaData?.title,
     description: metaData?.description,
     keywords: metaData?.keywords,
+    canonic: `https://gabapentinshop.com${location.pathname}`
   });
 
   return (

@@ -21,11 +21,12 @@ const SingleProduct = ({ data }) => {
         navigate(`/order`)
     }
     // const [thumbsSwiper, setThumbsSwiper] = useState(null);
+// console.log({data});
 
     return (
         <div>
-
-            <div className='single_product'>
+            {data && data.id ? 
+              <div className='single_product'>
                 <div className='container'>
                     <div className='row no-gutters'>
 
@@ -97,13 +98,15 @@ const SingleProduct = ({ data }) => {
                                         {/* Buy Now */}
                                     </Link>
                                 </div>
-                                <p><b>Category:</b> <a href='/'>{data.categories}</a></p>
+                                <p><b>Category:</b> <a href='/'>{data.categories[0]?.name}</a></p>
                             </div>
                         </div>
 
                     </div>
                 </div>
-            </div>
+            </div> : null}
+
+          
 
         </div>
     )

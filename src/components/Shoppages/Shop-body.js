@@ -5,11 +5,11 @@ import { Link, useNavigate } from 'react-router-dom'
 const Shop_body = ({ products }) => {
     const navigate = useNavigate()
     const onClickEnquityNow = (id, slug) =>{
-        localStorage.setItem("prodId",id)
+        // localStorage.setItem("prodId",id)
         // const tempSlug = slug.split(' ').join('-');
         
-        let tempSlug = decodeURIComponent(slug);
-        navigate(`/product-details/${tempSlug}-${id}`)
+        // let tempSlug = decodeURIComponent(slug);
+        navigate(`/product-details/${slug}`)
 
     }
 
@@ -31,7 +31,7 @@ const Shop_body = ({ products }) => {
                                         </div> */}
                                     </div>
                                     <div className="text_v"
-                                        onClick={()=>onClickEnquityNow(prod.id,(prod.slug || prod.title))}
+                                        onClick={()=>onClickEnquityNow(prod.id,(prod.slug))}
                                     
                                     >
                                         <h3>{prod.post_title || prod.title}</h3>

@@ -13,8 +13,10 @@ export const GETCATEGORYLIST = () => API.get("/ws-categorylist.php");
 export const GETALLPRODUCTSPERCATEGORY = ( categoryId ) => {
     const queryString = new URLSearchParams();
     // Add categoryId only if it exists
+    console.log({categoryId});
+    
     if (categoryId) {
-        queryString.append('cat_id', categoryId);
+        queryString.append('cat_slug', categoryId);
     }
     return API.get(`/ws-productlistcat.php?${queryString.toString()}`);
 };
@@ -28,7 +30,7 @@ export const GETPRODUCTDETAILS = ( categoryId ) => {
     const queryString = new URLSearchParams();
     // Add categoryId only if it exists
     if (categoryId) {
-        queryString.append('id', categoryId);
+        queryString.append('slug', categoryId);
     }
     return API.get(`/ws-productdetail.php?${queryString.toString()}`);
 };

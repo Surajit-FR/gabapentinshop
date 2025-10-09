@@ -4,7 +4,7 @@ import usePageMeta from '../Seo/Seo'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetails } from '../../store/thunks/productThunk'
 import Preloader from '../Preloader/Preloader'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 
 const ProductDetails = () => {
@@ -17,8 +17,10 @@ const ProductDetails = () => {
     description: productDetails?.meta_description,
     keywords: productDetails?.meta_keyword,
   });
-  // const { product_id } = useParams()
+  const { product_id } = useParams()
   // const productId = localStorage.getItem("prodId")
+  console.log({product_id});
+  
   const location = useLocation();
   const pathName = location.pathname
   const idArr = pathName.split("-")
@@ -28,10 +30,10 @@ const ProductDetails = () => {
     // if (productId) {
     //   dispatch(getProductDetails(productId))
     // }
-    if (updatedId) {
-      dispatch(getProductDetails(updatedId))
+    if (product_id) {
+      dispatch(getProductDetails(product_id))
     }
-  }, [updatedId, dispatch])
+  }, [product_id, dispatch])
 
   return (
     <div>

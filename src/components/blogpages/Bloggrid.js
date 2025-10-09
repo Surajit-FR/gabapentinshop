@@ -18,7 +18,7 @@ const Bloggrid = () => {
     
     const onClickBlog = (id, slug) => {
         // localStorage.setItem("blogId", id)
-        navigate(`/blog/${slug}-${id}`)
+        navigate(`/blog/${decodeURIComponent(slug)}-${id}`)
     }
     useEffect(() => {
         dispatch(getAllBlogs())

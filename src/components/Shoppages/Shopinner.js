@@ -23,18 +23,19 @@ const location = useLocation()
     keywords: '',
 
   })
-  console.log({ productsPercategory })
+  console.log({ catParams })
   useEffect(() => {
     if (catId
       && catId !== "all"
     ) {
       const catProducts = categories.filter(cat => cat.term_id === Number(catId))
+      console.log(catProducts);
       setMetadata({
         title: catProducts[0]?.meta_title,
         description: catProducts[0]?.meta_description,
         keywords: catProducts[0]?.meta_keyword,
       })
-      dispatch(getProductsPerCategory(catId))
+      dispatch(getProductsPerCategory(catProducts[0]?.slug))
     }
   }, [dispatch, catId, catParams, categories])
   useEffect(() => {

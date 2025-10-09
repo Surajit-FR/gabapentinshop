@@ -29,7 +29,7 @@ const Blogsingle = () => {
       dispatch(getBlogDetails(blog_id))
     }
   }, [blog_id, dispatch])
-console.log({blog_id});
+
 
   usePageMeta({
     title: singleBlog?.meta_title,

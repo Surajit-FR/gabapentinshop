@@ -8,7 +8,7 @@ const Shop_body = ({ products }) => {
         localStorage.setItem("prodId",id)
         // const tempSlug = slug.split(' ').join('-');
         
-        let tempSlug = slug.split(' ').join('-').replace(/\//g,"-");
+        let tempSlug = decodeURIComponent(slug);
         navigate(`/product-details/${tempSlug}-${id}`)
 
     }
@@ -31,7 +31,7 @@ const Shop_body = ({ products }) => {
                                         </div> */}
                                     </div>
                                     <div className="text_v"
-                                        onClick={()=>onClickEnquityNow(prod.id,(prod.slug || prod.post_title))}
+                                        onClick={()=>onClickEnquityNow(prod.id,(prod.slug))}
                                     
                                     >
                                         <h3>{prod.post_title || prod.title}</h3>

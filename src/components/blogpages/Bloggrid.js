@@ -14,8 +14,10 @@ const Bloggrid = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { blogs, loading, meta_tags_all_blogs } = useSelector(state => state.blogs)
+    console.log({blogs});
+    
     const onClickBlog = (id, slug) => {
-        localStorage.setItem("blogId", id)
+        // localStorage.setItem("blogId", id)
         navigate(`/blog/${slug}-${id}`)
     }
     useEffect(() => {

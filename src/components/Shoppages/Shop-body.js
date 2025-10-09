@@ -9,7 +9,7 @@ const Shop_body = ({ products }) => {
         // const tempSlug = slug.split(' ').join('-');
         
         let tempSlug = slug.split(' ').join('-').replace(/\//g,"-");
-        navigate(`/product-details/${tempSlug}`)
+        navigate(`/product-details/${tempSlug}-${id}`)
 
     }
 

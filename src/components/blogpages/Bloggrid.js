@@ -16,7 +16,7 @@ const Bloggrid = () => {
     const { blogs, loading, meta_tags_all_blogs } = useSelector(state => state.blogs)
     const onClickBlog = (id, slug) => {
         localStorage.setItem("blogId", id)
-        navigate(`/blog/${slug}`)
+        navigate(`/blog/${slug}-${id}`)
     }
     useEffect(() => {
         dispatch(getAllBlogs())

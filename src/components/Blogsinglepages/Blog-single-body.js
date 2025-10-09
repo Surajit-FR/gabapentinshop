@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { mapProductsPerCategory } from '../../store/thunks/productThunk'
 import { cleanup } from '../../store/reducers/productSlice'
-import { getAllBlogs } from '../../store/thunks/blogThunk'
+import { getAllBlogs, getBlogDetails } from '../../store/thunks/blogThunk'
 import CustomLoader from '../shared/CustomLoader'
 
 
@@ -13,6 +13,7 @@ const Blog_single_body = ({ data }) => {
     const { categories } = useSelector(state => state.categories)
     const { mapProductsData } = useSelector(state => state.products)
     const { blogs, loading } = useSelector(state => state.blogs)
+    const { blogSlug } = useParams();
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const htmlContent = (value) => {
@@ -50,7 +51,17 @@ const Blog_single_body = ({ data }) => {
         }
     }, [dispatch])
 
-
+    useEffect(() => {
+        // if(blogId){
+        //   dispatch(getBlogDetails(blogId))
+        // }
+        // if (updatedId) {
+        //   dispatch(getBlogDetails(updatedId))
+        // }
+        if (blogSlug) {
+            dispatch(getBlogDetails(blogSlug))
+        }
+    }, [blogSlug, dispatch])
     return (
 
         <div>

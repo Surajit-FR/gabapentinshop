@@ -5,11 +5,12 @@ import bloginnerimg from '../../img/blog/inner1.jpg'
 import usePageMeta from '../Seo/Seo'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBlogDetails } from '../../store/thunks/blogThunk'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 const Blogsingle = () => {
   const dispatch = useDispatch()
   const { singleBlog } = useSelector(state => state.blogs)
+  const {blog_id} = useParams();
   const location = useLocation();
   const pathName = location.pathname
   // console.log({ pathName })
@@ -21,10 +22,14 @@ const Blogsingle = () => {
     // if(blogId){
     //   dispatch(getBlogDetails(blogId))
     // }
-    if (updatedId) {
-      dispatch(getBlogDetails(updatedId))
+    // if (updatedId) {
+    //   dispatch(getBlogDetails(updatedId))
+    // }
+    if (blog_id) {
+      dispatch(getBlogDetails(blog_id))
     }
-  }, [updatedId, dispatch])
+  }, [blog_id, dispatch])
+console.log({blog_id});
 
   usePageMeta({
     title: singleBlog?.meta_title,

@@ -45,7 +45,7 @@ export const GETBLOGDETAILS = ( blogid ) => {
     const queryString = new URLSearchParams();
     // Add blogid only if it exists
     if (blogid) {
-        queryString.append('id', blogid);
+        queryString.append('slug', blogid);
     }
     return API.get(`/ws-blog-details.php?${queryString.toString()}`);
 };

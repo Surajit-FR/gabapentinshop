@@ -31,7 +31,7 @@ const Shop_body = ({ products }) => {
                                         </div> */}
                                     </div>
                                     <div className="text_v"
-                                        onClick={()=>onClickEnquityNow(prod.id,(prod.slug))}
+                                        onClick={()=>onClickEnquityNow(prod.id,(prod.slug || prod.title))}
                                     
                                     >
                                         <h3>{prod.post_title || prod.title}</h3>

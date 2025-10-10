@@ -17,7 +17,8 @@ const AllBlogContents = ({blogs, onClickBlog}) => {
                                                 <span className="month">{month[new Date(blog.date).getMonth()]} {new Date(blog.date).getFullYear()}</span>
                                             </div>
                                             <Link
-                                            // to={`/blog-single/${blog.id}`}
+                                            to={`/blog/${blog.slug}`}
+                                            target='_blank'
                                             >
 
                                                 <img src={blog.image || require("../../assets/blog/1.jpg")} alt="pic" />
@@ -27,16 +28,19 @@ const AllBlogContents = ({blogs, onClickBlog}) => {
                                             <div className="post-meta d-flex align-items-center">
                                                 <div className="post-meta-cat">
                                                     <Link
-                                                    // to={`/blog-single/${blog.id}`}
+                                                    to={`/blog/${blog.slug}`}
+                                                    target='_blank'
                                                     >{blog.title}</Link>
                                                 </div>
                                                 <Link className="post-meta-author"
-                                                // to={`/blog-single/${blog.id}`}
+                                                to={`/blog/${blog.slug}`}
+                                                target='_blank'
                                                 >{blog.author}</Link>
                                             </div>
                                             <div className="post-title">
                                                 <Link
-                                                //  to={`/blog-single/${blog.id}`}
+                                                 to={`/blog/${blog.slug}`}
+                                                 target='_blank'
                                                 >
                                                     {blog.title}
                                                 </Link>
@@ -52,7 +56,8 @@ const AllBlogContents = ({blogs, onClickBlog}) => {
                                             >{blog.description}
                                             </p>
                                             <Link
-                                                // to={`/blog-single/${blog.id}`} 
+                                                to={`/blog/${blog.slug}`} 
+                                                target='_blank'
                                                 className="read_more">
                                                 <i className="plus-icon">+</i>
                                                 Read More

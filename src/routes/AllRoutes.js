@@ -35,11 +35,11 @@ const AllRoutes = () => {
               <Route path="/*" element={<Index />} />
               <Route path="/about-us" element={<Aboutinner />} />
               <Route path="/baclofen" element={<Baclofeninner />} />
-              <Route path="/shop-now/:id" element={<Shopinner />} />
+              {/* <Route path="/shop-now/:id" element={<Shopinner />} /> */}
               <Route path="/shop" element={<Shopinner />} />
-              <Route path="/product-details/:product_id" element={<ProductDetails />} />
+              {/* <Route path="/product-details/:product_id" element={<ProductDetails />} /> */}
               <Route path="/blog" element={<Bloginner />} />
-              <Route path="/blog/:blog_id" element={<Blogsingle />} />
+              {/* <Route path="/blog/:blog_id" element={<Blogsingle />} /> */}
               <Route path="/faq" element={<Faqinner />} />
               <Route path="/contact-us" element={<Contactinner />} />
               <Route path="/order" element={<Order />} />

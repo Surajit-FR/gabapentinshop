@@ -19,13 +19,13 @@ function App() {
   
   return (
     <>
-      <Provider store={store}>
+      {/* <Provider store={store}> */}
         <div className="preLoading">
           <Navbar />
           <AllRoutes />
           <Fotter />
         </div>
-      </Provider>
+      {/* </Provider> */}
 
     </>
   );

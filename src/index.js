@@ -6,6 +6,13 @@ import App from './App';
 // import Index from './components/Index';
 import PrivateOne from './routes/PrivateOne';
 import PublicRouteAccess from './routes/PublicRouteAccess';
+import Blogsingle from './components/Blogsinglepages/Blogsingle';
+import ProductDetails from './components/Product-details/ProductDetails';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import Shopinner from './components/Shoppages/Shopinner';
+import Haeder_navbar_menu from './Navbar';
+import Fotter from './Fotter';
 // import PublicRouteAccess from './routes/PublicRouteAccess';
 // import Home from './components/Home/Home';
 
@@ -25,6 +32,41 @@ const router = createBrowserRouter([
         </PrivateOne>
       </>
     ),
+  },
+  {
+    path: '/blog/:blog_id', element:
+      // <PublicRouteAccess>
+      <>
+        <Haeder_navbar_menu />
+
+        <Blogsingle />
+        <Fotter />
+
+      </>
+
+    // </PublicRouteAccess>
+  },
+  {
+    path: "/product-details/:product_id", element:
+      // <PublicRouteAccess>
+      <>
+        <Haeder_navbar_menu />
+        <ProductDetails />
+        <Fotter />
+
+      </>
+    // </PublicRouteAccess>
+  },
+  {
+    path: "/shop-now/:id", element:
+      // <PublicRouteAccess>
+      <>
+        <Haeder_navbar_menu />
+        <Shopinner />
+        <Fotter />
+
+      </>
+    // </PublicRouteAccess>
   },
   // {
   //   path: '/home', element: (
@@ -49,8 +91,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
   // <App />
-  <RouterProvider router={router} future={{ v7_startTransition: true }} />
-  // </React.StrictMode>
+  <Provider store={store}>
+    <div className="preLoading">
+      <RouterProvider router={router} future={{ v7_startTransition: true }} />
+    </div>
+    {/* // </React.StrictMode> */}
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

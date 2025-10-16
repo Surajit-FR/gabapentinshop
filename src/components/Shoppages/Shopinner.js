@@ -11,7 +11,8 @@ import { getCategoryList } from '../../store/thunks/categoryThunk'
 
 const Shopinner = () => {
 const location = useLocation()
-  const { productsPercategory, loading, meta_tags_all_products } = useSelector(state => state.products)
+  const { productsPercategory, loading, meta_tags_all_products, meta_tags_single_product } = useSelector(state => state.products)
+  console.log(meta_tags_single_product)
   const { categories } = useSelector(state => state.categories)
   const { catParams } = useParams()
   const catId = localStorage.getItem("catId")
@@ -56,6 +57,15 @@ const location = useLocation()
       })
     }
   }, [meta_tags_all_products])
+  useEffect(() => {
+    if (meta_tags_single_product) {
+      setMetadata({
+        title: meta_tags_single_product?.meta_title,
+        description: meta_tags_single_product?.meta_description,
+        keywords: meta_tags_single_product?.meta_keyword,
+      })
+    }
+  }, [meta_tags_single_product])
 
   usePageMeta({
     title: metaData?.title,

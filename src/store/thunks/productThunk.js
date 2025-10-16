@@ -8,7 +8,7 @@ export const getProductsPerCategory = createAsyncThunk(
     'product/getAllProductsPercategory',
     async (categoryId) => {
       const response = await GETALLPRODUCTSPERCATEGORY(categoryId)
-      return response.data.result.product_list
+      return response.data.result
     },
 )
   

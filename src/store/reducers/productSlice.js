@@ -9,6 +9,7 @@ const initialState = {
     mapProductsData:[],
     productId: '',
     meta_tags_all_products: '',
+    meta_tags_single_product:{},
 }
 
 
@@ -36,8 +37,9 @@ const productReducer = createSlice({
         // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(getProductsPerCategory.fulfilled, (state, action) => {
             // Add products to the state array
-            state.productsPercategory = action.payload
-            state.loading = "idle"
+            state.productsPercategory = action.payload?.product_list
+            state.meta_tags_single_product = action.payload?.category
+            state.loading = "success"
         })
         // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(getProductsPerCategory.rejected, (state, action) => {

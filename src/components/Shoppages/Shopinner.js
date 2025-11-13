@@ -10,13 +10,13 @@ import CustomLoader from '../shared/CustomLoader'
 import { getCategoryList } from '../../store/thunks/categoryThunk'
 
 const Shopinner = () => {
-const location = useLocation()
+  const location = useLocation()
   const { productsPercategory, loading, meta_tags_all_products, meta_tags_single_product } = useSelector(state => state.products)
-  console.log(meta_tags_single_product)
-  const { categories } = useSelector(state => state.categories)
-  const { catParams } = useParams()
-  const catId = localStorage.getItem("catId")
-  const categoryName = localStorage.getItem("categoryName")
+  // console.log({ meta_tags_all_products })
+  // const { categories } = useSelector(state => state.categories)
+  const { id } = useParams()
+  // const catId = localStorage.getItem("catId")
+  // const categoryName = localStorage.getItem("categoryName")
   const dispatch = useDispatch()
   const [metaData, setMetadata] = useState({
     title: '',
@@ -24,30 +24,30 @@ const location = useLocation()
     keywords: '',
 
   })
-  console.log({ catParams })
-  useEffect(() => {
-    if (catId
-      && catId !== "all"
-    ) {
-      const catProducts = categories.filter(cat => cat.term_id === Number(catId))
-      console.log(catProducts);
-      setMetadata({
-        title: catProducts[0]?.meta_title,
-        description: catProducts[0]?.meta_description,
-        keywords: catProducts[0]?.meta_keyword,
-      })
-      dispatch(getProductsPerCategory(catProducts[0]?.slug))
-    }
-  }, [dispatch, catId, catParams, categories])
-  useEffect(() => {
-    if (catId === "all") {
-      dispatch(getAllProducts())
-    }
-  }, [dispatch, catId])
+  console.log({ id })
+  // useEffect(() => {
+  //   if (catId
+  //     && catId !== "all"
+  //   ) {
+  //     const catProducts = categories.filter(cat => cat.term_id === Number(catId))
+  //     console.log(catProducts);
+  //     setMetadata({
+  //       title: catProducts[0]?.meta_title,
+  //       description: catProducts[0]?.meta_description,
+  //       keywords: catProducts[0]?.meta_keyword,
+  //     })
+  //     dispatch(getProductsPerCategory(catProducts[0]?.slug))
+  //   }
+  // }, [dispatch, catId, id, categories])
+  // useEffect(() => {
+  //   if (catId === "all") {
+  //     dispatch(getAllProducts())
+  //   }
+  // }, [dispatch, catId])
   useEffect(() => {
     dispatch(getCategoryList())
   }, [dispatch])
-  
+
   useEffect(() => {
     if (meta_tags_all_products) {
       setMetadata({
@@ -73,11 +73,21 @@ const location = useLocation()
     keywords: metaData?.keywords,
     canonic: `https://gabapentinshop.com${location.pathname}`
   });
+  useEffect(() => {
+    if (id) {
+      dispatch(getProductsPerCategory(id))
+    }
+  }, [dispatch, id])
+  useEffect(() => {
+    if (!id) {
+      dispatch(getAllProducts())
+    }
+  }, [dispatch, id])
 
   return (
     <div>
 
-      <Inner_common_banner title={categoryName} subtitle={categoryName} background={shopinnerimg} />
+      <Inner_common_banner title={meta_tags_single_product?.cat_name || "Shop"} subtitle={meta_tags_single_product?.cat_name || "Shop"} background={shopinnerimg} />
 
       {loading === "All Products Loading" || loading === "products per cat loading" ? <CustomLoader /> :
         <>

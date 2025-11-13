@@ -87,7 +87,7 @@ const Shopinner = () => {
   return (
     <div>
 
-      <Inner_common_banner title={meta_tags_single_product?.cat_name || "Shop"} subtitle={meta_tags_single_product?.cat_name || "Shop"} background={shopinnerimg} />
+      <Inner_common_banner title={id ? meta_tags_single_product?.cat_name : "Shop"} subtitle={id ? meta_tags_single_product?.cat_name : "Shop"} background={shopinnerimg} />
 
       {loading === "All Products Loading" || loading === "products per cat loading" ? <CustomLoader /> :
         <>

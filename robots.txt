@@ -1,10 +1,7 @@
 User-agent: *
 Disallow:
-Disallow: /*cart
-Disallow: /gabapentin
-Disallow: /blog/Category/1
-Disallow: /*blog/blogdetails/
- 
 
+
+ 
 
 sitemap:https://gabapentinshop.com/sitemap.xml

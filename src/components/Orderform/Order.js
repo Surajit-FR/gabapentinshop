@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { mailOrder } from "../../store/thunks/mailThunk";
 import { cleanup } from "../../store/reducers/mailSlice";
 import CustomLoader from "../shared/CustomLoader";
+import Preloader from "../Preloader/Preloader";
 
 // const SERVICE_ID = "service_jffft35"
 // const YOUR_TEMPLATE_ID = "template_2ynn5ap"
@@ -21,7 +22,7 @@ const Order = () => {
         keywords: 'Gabapentinshop Order',
     });
     const { productsPercategory } = useSelector(state => state.products)
-    const {message} =useSelector(state=>state.mail)
+    const { message } = useSelector(state => state.mail)
     const navigate = useNavigate()
     const tempProductData = localStorage.getItem("productDate")
     const form = useRef();
@@ -124,7 +125,7 @@ const Order = () => {
         //     );
         // setSubmitting(false)
     }, [navigate, formDta, dispatch])
-console.log({message})
+    console.log({ message })
     useEffect(() => {
         if (message === 'success') {
             setLoading(false)
@@ -164,13 +165,14 @@ console.log({message})
             localStorage.removeItem("productDate")
         }
     }, [])
-    useEffect(()=>{
-        return()=>{
+    useEffect(() => {
+        return () => {
             dispatch(cleanup())
         }
-    },[dispatch])
+    }, [dispatch])
     return (
         <div>
+            <Preloader />
 
             <div className='online_order'>
                 <div className='container'>

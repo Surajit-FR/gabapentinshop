@@ -8,6 +8,7 @@ import { getAllProducts, getProductsPerCategory } from '../../store/thunks/produ
 import { useLocation, useParams } from 'react-router-dom'
 import CustomLoader from '../shared/CustomLoader'
 import { getCategoryList } from '../../store/thunks/categoryThunk'
+import Preloader from '../Preloader/Preloader'
 
 const Shopinner = () => {
   const location = useLocation()
@@ -86,6 +87,7 @@ const Shopinner = () => {
 
   return (
     <div>
+      <Preloader />
 
       <Inner_common_banner title={id ? meta_tags_single_product?.cat_name : "Shop"} subtitle={id ? meta_tags_single_product?.cat_name : "Shop"} background={shopinnerimg} />
 

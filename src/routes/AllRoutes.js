@@ -1,13 +1,14 @@
-import {  Routes, Route, useParams, 
+import {  Routes, Route,
+    //  useParams, 
     // Link
  } from 'react-router-dom';
 import Home from '../components/Home/Home';
 import Aboutinner from '../components/Aboutpages/Aboutinner';
 import Baclofeninner from '../components/Productpages/Baclofeninner';
 import Shopinner from '../components/Shoppages/Shopinner';
-import ProductDetails from '../components/Product-details/ProductDetails';
+// import ProductDetails from '../components/Product-details/ProductDetails';
 import Bloginner from '../components/blogpages/Bloginner';
-import Blogsingle from '../components/Blogsinglepages/Blogsingle';
+// import Blogsingle from '../components/Blogsinglepages/Blogsingle';
 import Faqinner from '../components/Faqpages/Faqinner';
 import Contactinner from '../components/Contactpages/Contactinner';
 import Order from '../components/Orderform/Order';
@@ -31,6 +32,7 @@ const AllRoutes = () => {
           <Navbar /> */}
           {/* Define Routes */}
           <Routes>
+
               <Route path="/" element={<Home />} />
               <Route path="/*" element={<Index />} />
               <Route path="/about-us" element={<Aboutinner />} />

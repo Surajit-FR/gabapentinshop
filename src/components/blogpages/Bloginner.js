@@ -2,6 +2,7 @@ import React from 'react'
 import Inner_common_banner from '../Common/Inner-common-banner'
 import Bloggrid from './Bloggrid'
 import bloginnerimg from '../../img/blog/inner1.jpg'
+import Preloader from '../Preloader/Preloader'
 
 
 const Bloginner = () => {
@@ -9,6 +10,8 @@ const Bloginner = () => {
   return (
 
           <>
+        <Preloader/>
+
             <Inner_common_banner title={"Blogs"} subtitle={"Blogs"} background={bloginnerimg} />
             <Bloggrid />
           </>

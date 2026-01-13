@@ -6,6 +6,7 @@ import contactinnerimg from '../../img/contact/inner1.jpg'
 import usePageMeta from '../Seo/Seo'
 import { useDispatch, useSelector } from 'react-redux'
 import { getContactData } from '../../store/thunks/contactUsThunk'
+import Preloader from '../Preloader/Preloader'
 
 
 const Contactinner = () => {
@@ -23,6 +24,8 @@ useEffect(()=>{
 },[dispatch])
   return (
     <>
+        <Preloader/>
+
       <Inner_common_banner title={"Contact Us"} subtitle={"Contact Us"} background={contactinnerimg}/>
       <Contact_form data={contactUsData}/>
       <Contact_map/>

@@ -8,7 +8,7 @@ const Preloader = () => {
       // Simulate loading time (e.g., fetching data)
       setTimeout(() => {
         setLoading(false);
-      }, 3000); // Adjust the delay as needed
+      }, 1000); // Adjust the delay as needed
     }, []);
 
 

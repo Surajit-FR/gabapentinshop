@@ -3,7 +3,7 @@ import Single_product from './SingleProduct'
 import usePageMeta from '../Seo/Seo'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetails } from '../../store/thunks/productThunk'
-import Preloader from '../Preloader/Preloader'
+// import Preloader from '../Preloader/Preloader'
 import { useLocation, useParams } from 'react-router-dom'
 
 
@@ -37,7 +37,7 @@ const ProductDetails = () => {
 
   return (
     <div>
-      <Preloader />
+      {/* <Preloader /> */}
       <Single_product data={productDetails} />
     </div>
   )

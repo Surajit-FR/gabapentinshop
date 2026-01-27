@@ -5,7 +5,7 @@ import faqinnerimg from '../../img/faqs/inner1.jpg'
 import usePageMeta from '../Seo/Seo'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFaqData } from '../../store/thunks/faqThunk'
-import Preloader from '../Preloader/Preloader'
+// import Preloader from '../Preloader/Preloader'
 
 
 const Faqinner = () => {
@@ -22,7 +22,7 @@ const Faqinner = () => {
 
   return (
     <>
-        <Preloader/>
+        {/* <Preloader/> */}
 
       <Inner_common_banner title={"Faqs"} subtitle={"Faqs"} background={faqinnerimg} />
       <Faq_body data={faqData} />
